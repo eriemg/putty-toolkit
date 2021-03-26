@@ -1,0 +1,115 @@
+$flex-order-max: 10;
+
+@each $breakpoint in $breaks {
+
+	$suffix: nth($breakpoint, 1);
+	$size: nth($breakpoint, 2);
+
+	@if $size == 0 {
+		.flex-row {flex-direction: row;}
+		.flex-column {flex-direction: column;}
+		.flex-row-reverse {flex-direction: row-reverse;}
+		.flex-column-reverse {flex-direction: column-reverse;}
+
+		.flex-wrap {flex-wrap: wrap;}
+		.flex-nowrap {flex-wrap: nowrap;}
+		.flex-wrap-reverse {flex-wrap: wrap-reverse;}
+		.flex-fill {flex: 1 1 auto;}
+		.flex-grow-0 {flex-grow: 0;}
+		.flex-grow-1 {flex-grow: 1;}
+		.flex-shrink-0 {flex-shrink: 0;}
+		.flex-shrink-1 {flex-shrink: 1;}
+
+		.justify-content-start  {justify-content: flex-start;}
+		.justify-content-end {justify-content: flex-end;}
+		.justify-content-center {justify-content: center;}
+		.justify-content-between {justify-content: space-between;}
+		.justify-content-around {justify-content: space-around;}
+
+		.align-items-start {align-items: flex-start;}
+		.align-items-end {align-items: flex-end;}
+		.align-items-center {align-items: center;}
+		.align-items-baseline {align-items: baseline;}
+		.align-items-stretch {align-items: stretch;}
+
+		.align-content-start {align-content: flex-start;}
+		.align-content-end {align-content: flex-end;}
+		.align-content-center {align-content: center;}
+		.align-content-between {align-content: space-between;}
+		.align-content-around {align-content: space-around;}
+		.align-content-stretch {align-content: stretch;}
+
+		.align-self-auto {align-self: auto;}
+		.align-self-start {align-self: flex-start;}
+		.align-self-end {align-self: flex-end;}
+		.align-self-center {align-self: center;}
+		.align-self-baseline {align-self: baseline;}
+		.align-self-stretch {align-self: stretch;}
+	} @else {
+		@media (min-width: $size) {
+		.flex-row#{$suffix} {flex-direction: row;}
+		.flex-column#{$suffix} {flex-direction: column;}
+		.flex-row-reverse#{$suffix} {flex-direction: row-reverse;}
+		.flex-column-reverse#{$suffix} {flex-direction: column-reverse;}
+
+		.flex-wrap#{$suffix} {flex-wrap: wrap;}
+		.flex-nowrap#{$suffix} {flex-wrap: nowrap;}
+		.flex-wrap-reverse#{$suffix} {flex-wrap: wrap-reverse;}
+		.flex-fill#{$suffix} {flex: 1 1 auto;}
+		.flex-grow-0#{$suffix} {flex-grow: 0;}
+		.flex-grow-1#{$suffix} {flex-grow: 1;}
+		.flex-shrink-0#{$suffix} {flex-shrink: 0;}
+		.flex-shrink-1#{$suffix} {flex-shrink: 1;}
+
+		.justify-content-start#{$suffix}  {justify-content: flex-start;}
+		.justify-content-end#{$suffix} {justify-content: flex-end;}
+		.justify-content-center#{$suffix} {justify-content: center;}
+		.justify-content-between#{$suffix} {justify-content: space-between;}
+		.justify-content-around#{$suffix} {justify-content: space-around;}
+
+		.align-items-start#{$suffix} {align-items: flex-start;}
+		.align-items-end#{$suffix} {align-items: flex-end;}
+		.align-items-center#{$suffix} {align-items: center;}
+		.align-items-baseline#{$suffix} {align-items: baseline;}
+		.align-items-stretch#{$suffix} {align-items: stretch;}
+
+		.align-content-start#{$suffix} {align-content: flex-start;}
+		.align-content-end#{$suffix} {align-content: flex-end;}
+		.align-content-center#{$suffix} {align-content: center;}
+		.align-content-between#{$suffix} {align-content: space-between;}
+		.align-content-around#{$suffix} {align-content: space-around;}
+		.align-content-stretch#{$suffix} {align-content: stretch;}
+
+		.align-self-auto#{$suffix} {align-self: auto;}
+		.align-self-start#{$suffix} {align-self: flex-start;}
+		.align-self-end#{$suffix} {align-self: flex-end;}
+		.align-self-center#{$suffix} {align-self: center;}
+		.align-self-baseline#{$suffix} {align-self: baseline;}
+		.align-self-stretch#{$suffix} {align-self: stretch;}
+		}
+	}
+}
+
+@each $breakpoint in $breaks {
+
+	$suffix: nth($breakpoint, 1);
+	$size: nth($breakpoint, 2);
+
+	$flex-order-step: $flex-order-max;
+	
+	@if $size == 0 {
+		@while $flex-order-step > 0 {
+
+			.order-#{$flex-order-step} { -ms-flex-order: $flex-order-step; order: $flex-order-step; }
+			$flex-order-step: $flex-order-step - 1;
+		}
+	} @else {
+		@media (min-width: $size) {
+			@while $flex-order-step > 0 {
+
+				.order-#{$flex-order-step}#{$suffix} { -ms-flex-order: $flex-order-step; order: $flex-order-step; }
+				$flex-order-step: $flex-order-step - 1;
+			}
+		}
+	}
+}

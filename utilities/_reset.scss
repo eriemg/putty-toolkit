@@ -1,0 +1,33 @@
+// Reset box sizing defaults, Courtesy Chris Coyier / Jon Neal
+// https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+
+html {
+    box-sizing: border-box;
+	height: 100%;
+}
+
+body {
+	min-height: 100%;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+
+// ADDITIONAL RESETS //
+
+header, main, footer {
+    display: block;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+fieldset {
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}

@@ -1,0 +1,48 @@
+.txt-justify {text-align: justify;}
+.txt-left {text-align: left;}
+.txt-center {text-align: center;}
+.txt-right {text-align: right;}
+
+.txt-lowercase {text-transform: lowercase;}
+.txt-uppercase {text-transform: uppercase;}
+.txt-capitalize	{text-transform: capitalize;}
+
+.txt-nowrap {white-space: nowrap;}
+.txt-truncate {
+    display: inline-block;
+    line-height: 1.125em;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@each $breakpoint in $breaks {
+
+	$suffix: nth($breakpoint, 1);
+	$size: nth($breakpoint, 2);
+
+	@media (min-width: $size) {
+		.txt-left#{$suffix} {text-align: left;}
+		.txt-center#{$suffix} {text-align: center;}
+		.txt-right#{$suffix} {text-align: right;}
+		.txt-justify#{$suffix} {text-align: justify;}
+	}
+}
+
+p.txt-left, .txt-left p {
+	margin-right: auto;
+}
+
+p.txt-center, .txt-center p {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+p.txt-right, .txt-right p {
+    margin-left: auto;
+}
+
+p.txt-justify, .txt-justify p {
+    max-width: auto;
+}

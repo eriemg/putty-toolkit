@@ -1,0 +1,193 @@
+$button-font-weight:		400 !default;
+$button-size:				2.5 !default;
+$button-border-width:		.1rem !default;
+$button-border-style:		solid !default;
+$button-border-radius:		small !default;
+$button-shadow:				none !default;
+$button-outline-width:		.2rem !default;
+$button-base-color-step:	5 !default;
+
+// DO NOT INCLUDE IN THEME
+
+$button-height:			($text-desktop-size * $button-size) + $button-border-width;
+$button-height-small:	(($text-desktop-size * $small-multiplier) * $button-size) + $button-border-width;
+$button-height-large:	(($text-desktop-size * $large-multiplier) * $button-size) + $button-border-width;
+
+$btn-colors: (
+    ( "primary", primary, 5, 0, 5,-1, 5, 2 ),
+    ( "secondary", secondary, 5, 0, 5,-1, 5, 2 ),
+    ( "tertiary", tertiary, 5, 0, 5,-1, 5, 2 ),
+    ( "info", info, 5, 0, 5,-1, 5, 2 ),
+    ( "success", success, 5, 0, 5,-1, 5, 2 ),
+    ( "warning", warning, -5, 0,-5,-1, 5, 2 ),
+    ( "danger", danger, 5, 0, 5,-1, 5, 2 ),
+    ( "gray", gray, 5, 0, 5,-1, 5, 2 ),
+    ( "light", gray, -5, 5,-5, 4, 1, 2 ),
+    ( "dark", gray, 5,-5, 5,-3, 0,-2 )
+);
+
+.btn {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+	font-size: $text-desktop-size;
+    font-weight: $button-font-weight;
+    line-height: $button-size;
+    height: $button-height;
+    padding: 0 (($button-size / 3) * 1em);
+    border-width: $button-border-width;
+    border-style: $button-border-style;
+    @include shadow($button-shadow);
+    @include radius($button-border-radius);
+    transition: all $transition-duration $transition-timing;
+}
+
+.btn:hover {
+    @include shadow(none);
+}
+
+.btn:focus,
+.btn:active,
+.btn.active {
+    outline: none;
+}
+
+.btn:disabled,
+.btn.disabled,
+.btn.disabled:focus,
+.btn.disabled:active {
+    @include shadow(none);
+    cursor: default;
+}
+
+// SMALL BUTTONS //
+
+.btn-sm {
+    font-size: $text-desktop-size * $small-multiplier;
+    height: $button-height-small;
+}
+
+
+
+// LARGE BUTTONS //
+
+.btn-lg {
+    font-size: $text-desktop-size * $large-multiplier;
+    height: $button-height-large;
+}
+
+// BLOCK BUTTONS //
+
+.btn-block {width: 100%;}
+
+
+@each $value in $btn-colors {
+
+	$suffix: nth($value, 1);
+	$tone: nth($value, 2);
+	$text-step: nth($value, 3);
+	$bg-step: nth($value, 4);
+	$border-step: nth($value, 4);
+	$text-hover-step: nth($value, 5);
+	$bg-hover-step: nth($value, 6);
+	$border-hover-step: nth($value, 6);
+	$text-disabled-step: nth($value, 7);
+	$bg-disabled-step: nth($value, 8);
+	$border-disabled-step: nth($value, 8);
+	
+	.btn-#{$suffix} {
+        color: color($tone, $button-base-color-step + $text-step);
+        background-color: color($tone, $button-base-color-step + $bg-step);
+        border-color: color($tone, $button-base-color-step + $border-step);
+    }
+	
+	.btn-outline-#{$suffix} {
+        color: color($tone, $button-base-color-step + $bg-step);
+        background: none;
+        border-color: color($tone, $button-base-color-step + $border-step);
+    }
+	
+    .btn-#{$suffix}:hover, .btn-outline-#{$suffix}:hover {
+        color: color($tone, $button-base-color-step + $text-hover-step);
+        background-color: color($tone, $button-base-color-step + $bg-hover-step);
+        border-color: color($tone, $button-base-color-step + $border-hover-step);
+    }
+	
+    .btn-#{$suffix}:focus, .btn-outline-#{$suffix}:focus,
+    .btn-#{$suffix}:active, .btn-#{$suffix}.active, .btn-outline-#{$suffix}:active, .btn-outline-#{$suffix}.active {
+        color: color($tone, $button-base-color-step + $text-hover-step);
+        background-color: color($tone, $button-base-color-step + $bg-hover-step);
+        border-color: color($tone, $button-base-color-step + $border-hover-step);
+        @include shadow-custom(0, 0, 0, $button-outline-width, transparentize( color($tone, $button-base-color-step + $bg-step) , .8));
+    }
+	
+	.btn-#{$suffix}:disabled, .btn-#{$suffix}.disabled {
+        color: color($tone, $button-base-color-step + $text-disabled-step);
+        background-color: color($tone, $button-base-color-step + $bg-disabled-step);
+        border-color: color($tone, $button-base-color-step + $border-disabled-step);
+    }
+	
+	.btn-outline-#{$suffix}:disabled, .btn-outline-#{$suffix}.disabled {
+        color: color($tone, $button-base-color-step + $bg-disabled-step);
+        border-color: color($tone, $button-base-color-step + $border-disabled-step);
+    }
+	
+	//HANDLING ICONS WITHIN BUTTONS
+	
+	.btn-#{$suffix} .icon {fill: color($tone, $button-base-color-step + $text-step);}   
+
+	.btn-outline-#{$suffix} .icon {fill: color($tone, $button-base-color-step + $bg-step);}
+
+	.btn-#{$suffix}:hover .icon,
+	.btn-outline-#{$suffix}:hover .icon {fill: color($tone, $button-base-color-step + $text-hover-step);}
+
+	.btn-#{$suffix}:focus .icon,
+	.btn-outline-#{$suffix}:focus .icon {fill: color($tone, $button-base-color-step + $text-hover-step);}
+
+	.btn-#{$suffix}:active .icon,
+	.btn-#{$suffix}.active .icon,
+	.btn-#{$suffix}.dropdown-toggle .icon,
+	.btn-outline-#{$suffix}:active .icon,
+	.btn-outline-#{$suffix}.active .icon,
+	.btn-outline-#{$suffix}.dropdown-toggle .icon {fill: color($tone, $button-base-color-step + $text-hover-step);}
+
+	.btn-#{$suffix}:disabled .icon,
+	.btn-#{$suffix}.disabled .icon {fill: color($tone, $button-base-color-step + $text-disabled-step);}
+
+	.btn-outline-#{$suffix}:disabled .icon,
+	.btn-outline-#{$suffix}.disabled .icon {fill: color($tone, $button-base-color-step + $bg-disabled-step);}
+	
+}
+
+// LINK BUTTONS //
+
+.btn-link {
+    color: $link-color;
+    background-color: transparent;
+    border-color: transparent;
+    text-decoration: $link-decoration;
+    @include shadow(none);
+}
+
+.btn-link:hover, .btn-link:active, .btn-link.active {
+    color: $link-color-hover;
+    text-decoration: $link-decoration-hover;
+}
+
+.btn-link:disabled, .btn-link.disabled {
+    color: $link-color-disabled;
+    text-decoration: none;
+}
+
+.btn-link .icon {fill: $link-color;}
+
+.btn-link:hover .icon,
+.btn-link:active .icon,
+.btn-link.active .icon {fill: $link-color-hover;}
+
+.btn-link:disabled .icon,
+.btn-link.disabled .icon {fill: $link-color-disabled;}
+	

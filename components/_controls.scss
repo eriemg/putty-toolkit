@@ -1,0 +1,396 @@
+$control-font-weight:	300 !default;
+$control-background:	$white !default;
+
+$control-border-color:	$gray-xl !default;
+$control-border-width:	.05rem !default;
+$control-border-style:	solid !default;
+
+$control-border-radius:	small !default;
+$control-shadow:		none !default;
+$control-inset-shadow:	none !default;
+
+$control-color:                 $black !default;
+$control-placeholder-color:     $gray-l !default;
+
+$control-label-color:           $black !default;
+$control-outline-width:         .2em !default;
+$control-border-color-focus:    $gray !default;
+$control-color-disabled:        $gray-l !default;
+$control-bg-color-disabled:     $gray-xxxl !default;
+$control-border-color-disabled: $gray-xxl !default;
+$control-plaintext-weight:      bold !default;
+
+$checkbox-color:			$gray !default;
+$checkbox-color-selected:	$primary !default;
+$checkbox-icon-color:		fff !default;
+
+$dropdown-icon-color:	fff;
+
+$range-track-height:	.5rem !default;
+$range-track-color:		$gray-xxl !default;
+$range-thumb-size:		1.25rem !default;
+$range-thumb-color:		$primary !default;
+
+    
+$controls: (
+    
+    empty: "data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'>''</svg>",
+    
+    checkbox-selected: "data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30' fill='%23#{$checkbox-icon-color}' style='position: absolute;'><path d='M23.559,11.562l-9.998,9.997C13.29,21.831,12.915,22,12.5,22s-0.79-0.169-1.062-0.441l-4.998-4.997C6.168,16.29,6,15.915,6,15.5C6,14.672,6.672,14,7.5,14c0.415,0,0.79,0.169,1.062,0.441l3.938,3.938l8.938-8.938C21.71,9.169,22.085,9,22.5,9c0.828,0,1.5,0.672,1.5,1.5C24,10.915,23.832,11.29,23.559,11.562z'/></svg>",
+    
+    checkbox-indeterminate: "data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30' fill='%23#{$checkbox-icon-color}' style='position: absolute;'><path d='M22.5,16h-15C6.672,16,6,15.328,6,14.5v0C6,13.672,6.672,13,7.5,13h15c0.828,0,1.5,0.672,1.5,1.5v0 C24,15.328,23.328,16,22.5,16z'/></svg>",
+    
+    dropdown: "data:image/svg+xml;charset=UTF-8, <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30' fill='%23#{$dropdown-icon-color}' style='position: absolute;'><path d='M27,10.5C27,9.672,26.328,9,25.5,9h-21C3.672,9,3,9.672,3,10.5c0,0.415,0.169,0.79,0.441,1.062l10.497,10.497C14.21,22.331,14.585,22.5,15,22.5s0.79-0.169,1.062-0.441l10.497-10.497C26.831,11.29,27,10.915,27,10.5z'/></svg>",
+    
+    radio-selected: "data:image/svg+xml;charset=UTF-8, <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23#{$checkbox-icon-color}' style='position: absolute;'><circle cx='10' cy='10' r='4'/></svg>",
+    
+    select: "data:image/svg+xml;charset=UTF-8, <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path d='M15,22.5c0.415,0,0.79-0.169,1.062-0.441l10.498-10.497C26.832,11.29,27,10.915,27,10.5C27,9.672,26.328,9,25.5,9c-0.415,0-0.79,0.169-1.062,0.441L15,18.879L5.562,9.441C5.29,9.169,4.915,9,4.5,9C3.672,9,3,9.672,3,10.5c0,0.415,0.168,0.79,0.441,1.062l10.498,10.497C14.21,22.331,14.585,22.5,15,22.5z'/></svg>"
+);
+    
+@function control($icon) {@return map-get($controls, $icon);}
+
+
+.control, .control-plaintext {
+    display: block;
+    width: 100%;
+    line-height: $button-size;
+    height: $button-height;
+    text-align: left;
+    padding: 0 (($button-size / 3) * 1em);
+    font-weight: $control-font-weight;
+    background: $control-background;
+    border: $control-border-width $control-border-style $control-border-color;
+    @include radius($control-border-radius);
+	@include shadow($control-shadow);
+    @include shadow($control-inset-shadow, inset);
+    transition: all $transition-duration $transition-timing;
+    outline: none;
+    
+    &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: $control-placeholder-color;
+        font-weight: $control-font-weight;
+        opacity: 1; /* Firefox */
+    }
+
+    &::-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: $control-placeholder-color;
+        font-weight: $control-font-weight;
+    }
+
+    &::-ms-input-placeholder { /* Microsoft Edge */
+        color: $control-placeholder-color;
+        font-weight: $control-font-weight;
+    }
+    
+    // Unstyle the caret on `<select>`s in IE10+.
+    &::-ms-expand {
+        background-color: transparent;
+        border: 0;
+    }
+    
+}
+
+// SMALL FORM CONTROLS //
+
+.control-sm, .label-sm {
+    font-size: $text-desktop-size * $small-multiplier;
+}
+
+.control-sm, select.control-sm {
+    height:  $button-height-small;
+}
+
+
+// LARGE FORM CONTROLS //
+
+.control-lg, .label-lg {
+    font-size: $text-desktop-size * $large-multiplier;
+}
+
+.control-lg, select.control-lg {
+    height:  $button-height-large;
+}
+
+
+textarea.control, textarea.control-plaintext {
+    height: auto;
+    padding: $base-spacing;
+    line-height: $text-line-height;
+    overflow: auto;
+    resize: vertical;
+}
+
+select.control {
+    position: relative;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+select.control:not([multiple]) {
+    background: #fff url(control(select)) no-repeat right 1rem center;
+    background-size: 1rem 1rem;
+    padding-right: 3rem;
+}
+
+select[multiple] {
+    height: auto;
+}
+
+select[multiple]:focus option:checked {
+  background: $checkbox-color-selected linear-gradient(0deg, $checkbox-color-selected 0%, $checkbox-color-selected 100%);
+}
+
+.control:focus {
+    border-color: $control-border-color-focus;
+    @include shadow-custom (0, 0, 0, $control-outline-width, transparentize($control-border-color-focus, .8));
+    opacity: 1;
+}
+
+.control:disabled, .control[readonly] {
+    color: $control-color-disabled;
+    background-color: $control-bg-color-disabled;
+    border-color: $control-border-color-disabled;
+    opacity: 1;
+    @include shadow(none);
+}
+
+.col-label {
+    line-height: $button-size;
+    padding: $control-border-width 0;
+}
+
+.control-plaintext {
+    display: block;
+    font-weight: $control-plaintext-weight;
+    border-color: rgba(255,255,255,0);
+    background: none;           
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+// CHECKBOXES //
+
+.check {
+    position: relative;
+    display: block;
+}
+
+.check-inline {
+    display: inline-block;
+    margin-right: $base-spacing;
+}
+
+.check-input {
+    position: absolute;
+    opacity: 0;
+}
+
+.check-label {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 0;
+    margin-left: 1.5em;
+}
+
+.check-input ~ .check-label:before {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    top: .2em;
+    left: -1.5em;
+    height: 1em;
+    width: 1em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 90% 90%;
+    background-color: $control-background;
+    border: $control-border-width $control-border-style $control-border-color;
+    @include radius(custom,.1em);
+    transition: all $transition-duration $transition-timing;
+}
+
+.check-input[type=checkbox]:checked ~ .check-label:before {
+    background-color: $checkbox-color-selected;
+    background-image: url(control(checkbox-selected));
+}
+
+.check-input[type=checkbox]:indeterminate ~ .check-label:before {
+    background-color: $checkbox-color-selected;
+    background-image: url(control(checkbox-indeterminate));
+}
+
+.check-input:focus ~ .check-label:before {
+    @include shadow-custom(0, 0, 0, .1em, transparentize($control-border-color-focus, .8));
+}
+
+.check-input:disabled ~ .check-label {
+    color: $gray-l;
+}
+
+.check-input:disabled ~ .check-label:before {
+    opacity: .5;
+}
+
+
+// RADIO BUTTONS //
+
+.check-input[type=radio] ~ .check-label:before {
+    @include radius(custom,.5em);
+}
+
+.check-input[type=radio]:checked ~ .check-label:before {
+    background-color: $primary;
+    background-image: url(control(radio-selected));
+}
+
+// FILE INPUTS //
+
+.control-file {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    width: .1px;
+    height: .1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    white-space: nowrap;
+}
+
+.control-file + label {
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: $button-font-weight;
+    line-height: $button-size;
+    height: $button-height;
+    padding: 0 (($button-size / 3) * 1rem);
+    margin-right: $base-spacing / 2;
+    border-width: $button-border-width;
+    border-style: $button-border-style;
+    @include shadow($button-shadow);
+    @include radius($button-border-radius);
+    transition: all $transition-duration $transition-timing;
+    color: color(secondary, $button-base-color-step + 5);
+    background-color: color(secondary, $button-base-color-step);
+    border-color: color(secondary, $button-base-color-step);
+}
+
+.control-file:focus + label,
+.control-file:active + label,
+.control-file + label:hover {
+    color: color(secondary, $button-base-color-step + 5);
+    background-color: color(secondary, $button-base-color-step - 1);
+    border-color: color(secondary, $button-base-color-step - 1);
+}
+
+.control-file:focus + label, .control-file:active + label {
+    @include shadow-custom(0, 0, 0, $button-outline-width, transparentize( color(secondary, $button-base-color-step - 1) , .8));
+}
+
+// RANGE INPUTS //
+
+.control-range {
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+}
+
+.control-range:focus {
+    outline: none;
+}
+
+.control-range::-webkit-slider-runnable-track {
+    width: 100%;
+    height: .5rem;
+    cursor: pointer;
+    background: $range-track-color;
+    @include radius(custom, $range-track-height * .5);
+}
+
+.control-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: $range-thumb-size;
+    height: $range-thumb-size;
+    background: $range-thumb-color;
+    @include radius(custom, $range-thumb-size * .5);
+    margin-top: ($range-thumb-size - $range-track-height) / -2;
+}
+
+.control-range:focus::-webkit-slider-runnable-track {
+    @include shadow-custom(0, 0, 0, $button-outline-width, transparentize( $range-track-color, .8));
+}
+
+.control-range:focus::-webkit-slider-thumb {
+    @include shadow-custom(0, 0, 0, $button-outline-width, transparentize( $range-thumb-color, .8));
+}
+
+.control-range::-moz-range-track {
+    width: 100%;
+    height: .5rem;
+    cursor: pointer;
+    background: $range-track-color;
+    @include radius(custom, $range-track-height * .5);
+}
+
+.control-range::-moz-range-thumb {
+    width: $range-thumb-size;
+    height: $range-thumb-size;
+    background: $range-thumb-color;
+    @include radius(custom, $range-thumb-size * .5);
+    margin-top: ($range-thumb-size - $range-track-height) / -2;
+}
+
+.control-range:focus::-moz-range-track {
+    @include shadow-custom (0, 0, 0, $button-outline-width, transparentize( $range-track-color, .8));
+}
+
+.control-range:focus::-moz-range-thumb {
+    @include shadow-custom (0, 0, 0, $button-outline-width, transparentize( $range-thumb-color, .8));
+}
+
+.control-range::-ms-track {
+    width: 100%;
+    height: .5rem;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    border-width: ($range-track-height * 2) 0;
+    color: transparent;
+}
+
+.control-range::-ms-fill-lower {
+    background: $range-track-color;
+    @include radius(custom, $range-track-height * .5);
+}
+
+.control-range::-ms-fill-upper {
+    background: $range-track-color;
+    @include radius(custom, $range-track-height * .5);
+}
+
+.control-range::-ms-thumb {
+    width: $range-thumb-size;
+    height: $range-thumb-size;
+    background: $range-thumb-color;
+    @include radius(custom, $range-thumb-size * .5);
+    margin-top: ($range-thumb-size - $range-track-height) / -2;
+}
+
+.control-range:focus::-ms-thumb {
+    @include shadow-custom(0, 0, 0, $button-outline-width, transparentize( $range-thumb-color, .8));
+}
+
+
+.group {
+    margin-bottom: $base-spacing;
+    
+    label {
+        display:                inline-block;
+        margin-bottom:          $base-spacing / 2;
+        color:                  $control-label-color;
+    }
+}

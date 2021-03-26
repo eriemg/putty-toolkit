@@ -1,0 +1,32 @@
+@each $breakpoint in $breaks {
+
+	$suffix: nth($breakpoint, 1);
+	$size: nth($breakpoint, 2);
+	
+	@if $size == 0 {
+		.pos-absolute {position: absolute;}
+		.pos-fixed {position: fixed;}
+		.pos-static {position: static;}
+		.pos-relative {position: relative;}
+		.pos-sticky {position: sticky;}
+		.pos-inherit {position: inherit;}
+	} @else {
+		@media (min-width: $size) {
+		.pos-absolute#{$suffix} {position: absolute;}
+		.pos-fixed#{$suffix} {position: fixed;}
+		.pos-static#{$suffix} {position: static;}
+		.pos-relative#{$suffix} {position: relative;}
+		.pos-sticky#{$suffix} {position: sticky;}
+		.pos-inherit#{$suffix} {position: inherit;}
+		}
+	}
+}
+
+.val-baseline { vertical-align: baseline !important; } // Browser default
+.val-top { vertical-align: top !important; }
+.val-middle { vertical-align: middle !important; }
+.val-bottom { vertical-align: bottom !important; }
+.val-text-top { vertical-align: text-top !important; }
+.val-text-bottom { vertical-align: text-bottom !important; }
+.val-sub { vertical-align: sub !important;}
+.val-super { vertical-align: super !important;}

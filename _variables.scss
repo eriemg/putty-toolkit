@@ -1,0 +1,42 @@
+//---------------------//
+//	GLOBAL VARIABLES   //
+//---------------------//
+
+
+// BREAKPOINTS //
+
+$breakpoint-sm:     576px !default;
+$breakpoint-md:     768px !default;
+$breakpoint-lg:     992px !default;
+$breakpoint-xl:     1200px !default;
+
+$breaks:(
+("", 0),
+("-sm", $breakpoint-sm),
+("-md", $breakpoint-md),
+("-lg", $breakpoint-lg),
+("-xl", $breakpoint-xl));
+
+// SPACING //
+
+$base-spacing: 1rem !default;
+
+
+// TRANSITIONS //
+
+$transition-duration: 150ms !default;
+$transition-timing: cubic-bezier(0.25, 0.1, 0.25, 1) !default;
+
+
+// Z-INDEX //
+
+// DO NOT INCLUDE IN THEME
+
+$zindex-dropdown:          100      !default;
+$zindex-sticky:            120      !default;
+$zindex-fixed:             130      !default;
+$zindex-overlay:           140      !default;
+$zindex-modal:             150      !default;
+$zindex-popover:           160      !default;
+$zindex-tooltip:           170      !default;
+$zindex-navigation:        180      !default;

@@ -1,0 +1,46 @@
+@each $breakpoint in $breaks {
+
+	$suffix: nth($breakpoint, 1);
+	$size: nth($breakpoint, 2);
+
+	@if $size == 0 {
+		.display-none {display: none;}
+		.display-block {display: block;}
+		.display-inline {display: inline;}
+		.display-inline-block {display: inline-block;}
+		.display-flex {display: flex;}
+		.display-inline-flex {display: inline-flex;}
+		.display-table {display: table;}
+		.display-table-cell {display: table-cell;}
+		.display-table-row {display: table-row;}
+		.visible {visibility: visible;}
+		.invisible {visibility: hidden;}
+	} @else {
+		@media (min-width: $size) {
+		.display-none#{$suffix} {display: none;}
+		.display-block#{$suffix} {display: block;}
+		.display-inline#{$suffix} {display: inline;}
+		.display-inline-block#{$suffix} {display: inline-block;}
+		.display-flex#{$suffix} {display: flex;}
+		.display-inline-flex#{$suffix} {display: inline-flex;}
+		.display-table#{$suffix} {display: table;}
+		.display-table-cell#{$suffix} {display: table-cell;}
+		.display-table-row#{$suffix} {display: table-row;}
+		
+		.visible#{$suffix} {visibility: visible;}
+		.invisible#{$suffix} {visibility: hidden;}
+		}
+	}
+}
+
+@media print {
+    .display-print-none {display: none;}
+    .display-print-block {display: block;}
+    .display-print-inline {display: inline;}
+    .display-print-inline-block {display: inline-block;}
+    .display-print-flex {display: flex;}
+    .display-print-inline-flex {display: inline-flex;}
+    .display-print-table {display: table;}
+    .display-print-table-cell {display: table-cell;}
+    .display-print-table-row {display: table-row;}
+}

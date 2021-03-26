@@ -1,0 +1,42 @@
+.icon {
+    position:           relative;
+    display:            inline-block;
+    vertical-align:     middle;
+    width:              1em;
+    height:             1em;
+    margin:             -.2em .2em 0;
+}
+
+.icon.icon-sm {
+    width: 20px;
+    height: 20px;
+}
+
+.icon.icon-md {
+    width: 30px;
+    height: 30px;
+}
+
+.icon.icon-lg {
+    width: 40px;
+    height: 40px;
+}
+
+.icon.icon-xl {
+    width: 50px;
+    height: 50px;
+}
+
+// ANIMATIONS //
+
+.spin {
+    animation-name: infinite-spin;
+    animation-duration: 600ms;
+    animation-iteration-count: infinite;
+    animation-timing-function:cubic-bezier(.1,.4,.9,.6);
+}
+
+@keyframes infinite-spin {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}

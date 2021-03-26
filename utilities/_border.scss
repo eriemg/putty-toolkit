@@ -1,0 +1,79 @@
+$border-width:	1px !default;
+$border-style:  solid !default;
+$border-color:  $gray-xxl !default;
+
+
+@mixin border ($thickness: $border-width, $style: $border-style, $color: $border-color) {
+    border: $thickness $style $color;
+}
+
+@mixin border-top ($thickness: $border-width, $style: $border-style, $color: $border-color) {
+    border-top: $thickness $style $color;
+}
+
+@mixin border-right ($thickness: $border-width, $style: $border-style, $color: $border-color) {
+    border-right: $thickness $style $color;
+}
+
+@mixin border-bottom ($thickness: $border-width, $style: $border-style, $color: $border-color) {
+    border-bottom: $thickness $style $color;
+}
+
+@mixin border-left ($thickness: $border-width, $style: $border-style, $color: $border-color) {
+    border-left: $thickness $style $color;
+}
+
+@mixin border-custom ($top-width: $border-width, $right-width: $top-width, $bottom-width: $top-width, $left-width: $top-width, $style: $border-style, $color: $border-color) {
+    border-top:     $top-width;
+    border-right:   $right-width;
+    border-bottom:  $bottom-width;
+    border-left:    $left-width;
+    border-style:   $style;
+    border-color:   $color;
+}
+
+@each $breakpoint in $breaks {
+
+	$suffix: nth($breakpoint, 1);
+	$size: nth($breakpoint, 2);
+    
+	@if $size == 0 {
+		.border {@include border;}
+		.border-top {@include border-top;}
+		.border-right {@include border-right;}
+		.border-bottom {@include border-bottom;}
+		.border-left {@include border-left;}
+		.border-none {border: 0;}
+		.border-top-none {border-top: 0;}
+		.border-right-none {border-right: 0;}
+		.border-bottom-none {border-bottom: 0;}
+		.border-left-none {border-left: 0;}
+	} @else {
+		@media (min-width: $size) {
+		.border#{$suffix} {@include border;}
+		.border-top#{$suffix} {@include border-top;}
+		.border-right#{$suffix} {@include border-right;}
+		.border-bottom#{$suffix} {@include border-bottom;}
+		.border-left#{$suffix} {@include border-left;}
+		.border-none#{$suffix} {border: 0;}
+		.border-top-none#{$suffix} {border-top: 0;}
+		.border-right-none#{$suffix} {border-right: 0;}
+		.border-bottom-none#{$suffix} {border-bottom: 0;}
+		.border-left-none#{$suffix} {border-left: 0;}
+		}
+	}
+}
+
+//Generate border colors
+@each $color, $step in $colors {
+
+    .border-#{$color}-xxxd {border-color: color($color, 1);}
+    .border-#{$color}-xxd {border-color: color($color, 2);}
+    .border-#{$color}-xd {border-color: color($color, 3);}
+    .border-#{$color}-d {border-color: color($color, 4);}
+    .border-#{$color} {border-color: color($color, 5);}
+    .border-#{$color}-l {border-color: color($color, 6);}
+    .border-#{$color}-xl {border-color: color($color, 7);}
+    .border-#{$color}-xxl {border-color: color($color, 8);}
+    .border-#{$color}-xxxl {border-color: color($color, 9);}
+}

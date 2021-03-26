@@ -1,0 +1,127 @@
+$inline-list-spacing:					.5rem !default;
+$description-list-term-weight:			700 !default;
+$description-list-term-style:			normal !default;
+$description-list-nested-term-weight:	$text-weight !default; 
+$description-list-nested-term-style:	italic !default;
+
+$list-group-action-text:	$white !default;
+$list-group-action-bg:		$gray !default;
+$list-group-text-active:	$white !default;
+$list-group-bg-active:		$gray-xd !default;
+$list-group-text-disabled:	$white !default;
+$list-group-bg-disabled:	$gray-l !default;
+
+
+//Basic Lists
+
+.list-no-style {
+	padding-left: 0;
+	list-style: none;
+}
+
+.list-inline-block {
+	padding-left: 0;
+	list-style: 0;
+	
+	> * {
+		display: inline-block;
+		
+		&:not(:last-child) {
+			margin-right: $inline-list-spacing;
+		}
+	}
+}
+
+
+// Description Lists
+
+dl {
+	margin-top: 0;
+	
+	> dt {
+		font-weight: $description-list-term-weight;
+		font-style: $description-list-term-style;
+	}
+	
+	> dl tl {
+		font-weight: $description-list-nested-term-weight;
+		font-style: $description-list-nested-term-style;
+	}
+}
+
+
+//List Groups
+
+.list-group {
+	@include border();
+	@include radius(medium);
+	padding: 0;
+	list-style: none;
+	overflow: hidden;
+	
+	&.flush {
+		border: 0;
+		border-radius: 0;
+	}
+	
+	> .item {
+		padding: .75 * $base-spacing;
+	
+		&:not(:last-child) {
+			@include border-bottom();
+		}
+		
+		&.action:hover,
+		&.action:focus {
+			color: $list-group-action-text;
+			background: $list-group-action-bg;
+			cursor: pointer;
+		}
+		
+		&.active, &.action.active,
+		&.active:hover, &.action.active:hover,
+		&.active:focus, &.action.active:focus {
+			color: $list-group-text-active;
+			background: $list-group-bg-active;
+			border-color: $list-group-bg-active;
+			cursor: default;
+		}
+		
+		&:disabled, &.action:disabled,
+		&.disabled, &.action.disabled {
+			color: $list-group-text-disabled;
+			background: $list-group-bg-disabled;
+			cursor: default;
+		}
+		
+		@each $value in $btn-colors {
+
+			$suffix: nth($value, 1);
+			$tone: nth($value, 2);
+			$text-step: nth($value, 3);
+			$bg-step: nth($value, 4);
+			$text-hover-step: nth($value, 5);
+			$bg-hover-step: nth($value, 6);
+			$text-disabled-step: nth($value, 7);
+			$bg-disabled-step: nth($value, 8);
+			
+			&.action.#{$suffix} {
+				color: $text-step;
+				background: $bg-step;
+			}
+			
+			&.action.#{$suffix}:hover,
+			&.action.#{$suffix}:active,
+			&.action.#{$suffix}.active {
+				color: $text-hover-step;
+				background: $bg-hover-step;
+			}
+			
+			&.action.#{$suffix}:disabled,
+			&.action.#{$suffix}.disabled {
+				color: $text-disabled-step;
+				background: $bg-disabled-step;
+			}
+		}
+	}
+}

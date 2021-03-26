@@ -1,0 +1,443 @@
+$text-font-family:	sans-serif !default;
+$text-mobile-size:	1rem !default;
+$text-desktop-size:	1.250rem !default;
+$text-weight: 		300 !default;
+$text-line-height: 	1.500 !default;
+$text-color:		$black !default;
+
+$small-multiplier:	.875 !default;
+$large-multiplier:	1.25 !default;
+
+$p-margin-top:		0 !default;
+$p-margin-bottom:	1.000em !default;
+
+$link-color:			$primary-d !default;
+$link-decoration:		underline !default;
+$link-color-hover:		$primary !default;
+$link-decoration-hover:	none !default;
+$link-color-disabled:	$gray-l !default;
+$link-opacity-disabled:	.5 !default;
+$link-focus-bg:			warning-xxl !default;
+
+$heading-font-family:	$text-font-family !default;
+$heading-color:			$text-color !default;
+$heading-mobile-scale:	1.333 !default;
+$heading-desktop-scale:	1.414 !default;
+$heading-weight:		300 !default;
+$heading-transform:		inherit !default;
+$heading-line-height:	1.125 !default;
+$heading-margin-top:	1.000em !default;
+$heading-margin-btm:	0.500em !default;
+
+$alt-font-family:	serif !default;
+$alt-weight:		300 !default;
+
+$code-font-size:	1em !default;
+$code-font-family:	monospace !default;
+$code-color:		$secondary-d !default;
+
+$caption-color: $gray !default;
+
+$highlight-text-color:          $text-color !default;
+$highlight-bg-color:            $warning-xl !default;
+
+$deleted-text-decoration:       line-through !default;
+$deleted-text-style:            wavy !default;
+$deleted-text-color:            $danger !default;
+
+$inaccurate-text-decoration:    line-through !default;
+$inaccurate-text-style:         solid !default;
+$inaccurate-text-color:         $warning !default;
+
+$insert-text-decoration:        underline !default;
+$insert-text-style:             dotted !default;
+$insert-text-color:             $success !default;
+
+$underline-text-decoration:     underline !default;
+$underline-text-style:          solid !default;
+$underline-text-color:          $gray-xl !default;
+
+$kbd-padding-y:                 .2rem !default;
+$kbd-padding-x:                 .4rem !default;
+$kbd-font-size:                 1rem !default;
+$kbd-color:                     $white !default;
+$kbd-bg:                        $gray-xxd !default;
+$kbd-border-radius:             small !default;
+$kbd-box-shadow:                none !default;
+$kbd-font-weight-nested:        700 !default;
+
+$var-font-style:                italic !default;
+
+$samp-font-size:                1rem !default;
+
+$abbr-text-decoration-color:    $gray-xl !default;
+
+$bq-footer-color:               $gray !default;
+
+
+$emoji-support: ", 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'";
+
+$desktop-h6:    $text-desktop-size;
+$desktop-h5:    $text-desktop-size;
+$desktop-h4:    $desktop-h5 * $heading-desktop-scale;
+$desktop-h3:    $desktop-h4 * $heading-desktop-scale;
+$desktop-h2:    $desktop-h3 * $heading-desktop-scale;
+$desktop-h1:    $desktop-h2 * $heading-desktop-scale;
+
+$mobile-h6:     $text-mobile-size;
+$mobile-h5:     $text-mobile-size;
+$mobile-h4:     $mobile-h5 * $heading-mobile-scale;
+$mobile-h3:     $mobile-h4 * $heading-mobile-scale;
+$mobile-h2:     $mobile-h3 * $heading-mobile-scale;
+$mobile-h1:     $mobile-h2 * $heading-mobile-scale;
+
+
+body {
+	font-family: #{$text-font-family}#{$emoji-support};
+	font-size: $text-mobile-size;
+	font-weight: $text-weight;
+	line-height: $text-line-height;
+	color: $text-color;
+}
+
+p {
+	max-width: 40 * $text-desktop-size;
+	margin: $p-margin-top 0 $p-margin-bottom;
+}
+
+h1, .h1, [class^=".h1-"],
+h2, .h2, [class^=".h2-"],
+h3, .h3, [class^=".h3-"],
+h4, .h4, [class^=".h4-"],
+h5, .h5, [class^=".h5-"],
+h6, .h6, [class^=".h6-"] {
+    font-family: #{$heading-font-family}#{$emoji-support};
+	line-height: $heading-line-height;
+	margin: $heading-margin-top 0 $heading-margin-btm;
+	font-weight: $heading-weight;
+	text-transform: $heading-transform;
+}
+
+*.alt,
+h1.alt, .h1.alt, [class^=".h1-"],
+h2.alt, .h2.alt, [class^=".h2-"],
+h3.alt, .h3.alt, [class^=".h3-"],
+h4.alt, .h4.alt, [class^=".h4-"],
+h5.alt, .h5.alt, [class^=".h5-"],
+h6.alt, .h6.alt, [class^=".h6-"] {
+	font-family: #{$alt-font-family}#{$emoji-support};
+	font-weight: $alt-weight;
+}
+
+// SIZES & SPACING FOR TABLETS AND LARGER //
+
+@each $breakpoint in $breaks {
+
+	$suffix: nth($breakpoint, 1);
+	$size: nth($breakpoint, 2);
+    
+	@if $size == 0 {
+		
+		body {font-size: $text-mobile-size;}
+		
+		h1, .h1 {font-size: $mobile-h1;}
+		h2, .h2 {font-size: $mobile-h2;}
+		h3, .h3 {font-size: $mobile-h3;}
+		h4, .h4 {font-size: $mobile-h4;}
+		h5, .h5 {font-size: $mobile-h5;}
+		h6, .h6 {font-size: $mobile-h6;}
+		
+		h1.small, .h1.small {font-size: $mobile-h1 * $small-multiplier;}
+		h2.small, .h2.small {font-size: $mobile-h2 * $small-multiplier;}
+		h3.small, .h3.small {font-size: $mobile-h3 * $small-multiplier;}
+		h4.small, .h4.small {font-size: $mobile-h4 * $small-multiplier;}
+		h5.small, .h5.small {font-size: $mobile-h5 * $small-multiplier;}
+		h6.small, .h6.small {font-size: $mobile-h6 * $small-multiplier;}
+		
+		h1.large, .h1.large {font-size: $mobile-h1 * $large-multiplier;}
+		h2.large, .h2.large {font-size: $mobile-h2 * $large-multiplier;}
+		h3.large, .h3.large {font-size: $mobile-h3 * $large-multiplier;}
+		h4.large, .h4.large {font-size: $mobile-h4 * $large-multiplier;}
+		h5.large, .h5.large {font-size: $mobile-h5 * $large-multiplier;}
+		h6.large, .h6.large {font-size: $mobile-h6 * $large-multiplier;}
+		
+	} @else if $size <= $breakpoint-md {
+		
+		@media (min-width: $size){
+		.h1#{$suffix} {font-size: $mobile-h1;}
+		.h2#{$suffix} {font-size: $mobile-h2;}
+		.h3#{$suffix} {font-size: $mobile-h3;}
+		.h4#{$suffix} {font-size: $mobile-h4;}
+		.h5#{$suffix} {font-size: $mobile-h5;}
+		.h6#{$suffix} {font-size: $mobile-h6;}
+			
+		.h1#{$suffix}.small {font-size: $mobile-h1 * $small-multiplier;}
+		.h2#{$suffix}.small {font-size: $mobile-h2 * $small-multiplier;}
+		.h3#{$suffix}.small {font-size: $mobile-h3 * $small-multiplier;}
+		.h4#{$suffix}.small {font-size: $mobile-h4 * $small-multiplier;}
+		.h5#{$suffix}.small {font-size: $mobile-h5 * $small-multiplier;}
+		.h6#{$suffix}.small {font-size: $mobile-h6 * $small-multiplier;}
+			
+		.h1#{$suffix}.large {font-size: $mobile-h1 * $large-multiplier;}
+		.h2#{$suffix}.large {font-size: $mobile-h2 * $large-multiplier;}
+		.h3#{$suffix}.large {font-size: $mobile-h3 * $large-multiplier;}
+		.h4#{$suffix}.large {font-size: $mobile-h4 * $large-multiplier;}
+		.h5#{$suffix}.large {font-size: $mobile-h5 * $large-multiplier;}
+		.h6#{$suffix}.large {font-size: $mobile-h6 * $large-multiplier;}
+		}
+		
+	} @else if $size >= $breakpoint-lg {
+		
+		@media (min-width: $size){
+		
+		body {font-size: $text-desktop-size;}
+		
+		h1, .h1 {font-size: $desktop-h1;}
+		h2, .h2 {font-size: $desktop-h2;}
+		h3, .h3 {font-size: $desktop-h3;}
+		h4, .h4 {font-size: $desktop-h4;}
+		h5, .h5 {font-size: $desktop-h5;}
+		h6, .h6 {font-size: $desktop-h6;}
+		
+		h1.small, .h1.small {font-size: $desktop-h1 * $small-multiplier;}
+		h2.small, .h2.small {font-size: $desktop-h2 * $small-multiplier;}
+		h3.small, .h3.small {font-size: $desktop-h3 * $small-multiplier;}
+		h4.small, .h4.small {font-size: $desktop-h4 * $small-multiplier;}
+		h5.small, .h5.small {font-size: $desktop-h5 * $small-multiplier;}
+		h6.small, .h6.small {font-size: $desktop-h6 * $small-multiplier;}
+		
+		h1.large, .h1.large {font-size: $desktop-h1 * $large-multiplier;}
+		h2.large, .h2.large {font-size: $desktop-h2 * $large-multiplier;}
+		h3.large, .h3.large {font-size: $desktop-h3 * $large-multiplier;}
+		h4.large, .h4.large {font-size: $desktop-h4 * $large-multiplier;}
+		h5.large, .h5.large {font-size: $desktop-h5 * $large-multiplier;}
+		h6.large, .h6.large {font-size: $desktop-h6 * $large-multiplier;}
+		
+		.h1#{$suffix} {font-size: $desktop-h1;}
+		.h2#{$suffix} {font-size: $desktop-h2;}
+		.h3#{$suffix} {font-size: $desktop-h3;}
+		.h4#{$suffix} {font-size: $desktop-h4;}
+		.h5#{$suffix} {font-size: $desktop-h5;}
+		.h6#{$suffix} {font-size: $desktop-h6;}
+		
+		.h1#{$suffix}.small {font-size: $desktop-h1 * $small-multiplier;}
+		.h2#{$suffix}.small {font-size: $desktop-h2 * $small-multiplier;}
+		.h3#{$suffix}.small {font-size: $desktop-h3 * $small-multiplier;}
+		.h4#{$suffix}.small {font-size: $desktop-h4 * $small-multiplier;}
+		.h5#{$suffix}.small {font-size: $desktop-h5 * $small-multiplier;}
+		.h6#{$suffix}.small {font-size: $desktop-h6 * $small-multiplier;}
+			
+		.h1#{$suffix}.large {font-size: $desktop-h1 * $large-multiplier;}
+		.h2#{$suffix}.large {font-size: $desktop-h2 * $large-multiplier;}
+		.h3#{$suffix}.large {font-size: $desktop-h3 * $large-multiplier;}
+		.h4#{$suffix}.large {font-size: $desktop-h4 * $large-multiplier;}
+		.h5#{$suffix}.large {font-size: $desktop-h5 * $large-multiplier;}
+		.h6#{$suffix}.large {font-size: $desktop-h6 * $large-multiplier;}
+		}
+		
+	}
+}
+
+small, .small {font-size: $text-mobile-size * $small-multiplier;}
+.large {font-size: $text-mobile-size * $large-multiplier;}
+
+@media (min-width: $breakpoint-lg) {
+	small, .small {font-size: $text-desktop-size * $small-multiplier;}
+	.large {font-size: $text-desktop-size * $large-multiplier;}
+}
+
+// TEXT LINKS //
+
+a {
+	color: $link-color;
+	text-decoration: $link-decoration;
+	transition: all $transition-duration $transition-timing;
+}
+
+a:hover {
+	color: $link-color-hover;
+	text-decoration: $link-decoration-hover;
+}
+
+a:focus,
+a:active,
+a.active {
+	outline: none;
+	color: $link-color-hover;
+	text-decoration: $link-decoration-hover;
+}
+
+a.disabled {
+    color: $link-color-disabled;
+	opacity: $link-opacity-disabled;
+    text-decoration: none;
+    cursor: default;
+}
+
+a .icon {
+	fill: $link-color;
+}
+
+a:hover .icon {
+	fill: $link-color-hover;
+}
+
+a:focus .icon,
+a:active .icon,
+a.active .icon {
+	fill: $link-color-hover;
+}
+
+a:disabled .icon,
+a.disabled .icon {
+	fill: $link-color-disabled;
+}
+
+// LINK COLORS //
+
+@each $color, $step in $colors {
+	
+	@each $color-gradient, $color-gradient-suffix in $color-gradients {
+	
+		a.#{$color}#{$color-gradient-suffix} {
+			color: color($color, $color-gradient);
+			text-decoration-color: color($color, $color-gradient);
+			
+			.icon {fill: color($color, $color-gradient);}
+		}
+
+		a.#{$color}#{$color-gradient-suffix}:hover {
+			color: color($color, $color-gradient + 2);
+			text-decoration-color: color($color, $color-gradient + 2);
+			
+			.icon {fill: color($color, $color-gradient + 2);}
+		}
+
+		a.#{$color}#{$color-gradient-suffix}:focus,
+		a.#{$color}#{$color-gradient-suffix}:active,
+		a.#{$color}#{$color-gradient-suffix}.active {
+			outline: none;
+			color: color($color, $color-gradient + 2);
+			text-decoration-color: color($color, $color-gradient + 2);
+			
+			.icon {fill: color($color, $color-gradient + 2);}
+		}
+	}
+}
+
+strong, .strong {font-weight: 700;}
+b, .bold {font-weight: bolder;}
+.light {font-weight: lighter;}
+em, i, .italic {font-style: italic;}
+
+.text-monospace {
+    font-family: #{$code-font-family}#{$emoji-support};
+}
+
+// INLINE TEXT ELEMENTS //
+
+mark {
+	color: $highlight-text-color;
+	background-color: $highlight-bg-color;
+}
+
+del {
+    text-decoration: $deleted-text-decoration;
+    text-decoration-style: $deleted-text-style;
+    text-decoration-color: $deleted-text-color;
+}
+
+s {
+    text-decoration: $inaccurate-text-decoration;
+    text-decoration-style: $inaccurate-text-style;
+    text-decoration-color: $inaccurate-text-color;
+}
+
+ins {
+    text-decoration: $insert-text-decoration;
+    text-decoration-style: $insert-text-style;
+    text-decoration-color: $insert-text-color;
+}
+
+u {
+    text-decoration: $underline-text-decoration;
+    text-decoration-style: $underline-text-style;
+    text-decoration-color: $underline-text-color;
+}
+
+code {
+    font-family: $code-font-family;
+    font-size: $code-font-size;
+    color: $code-color;
+}
+
+pre {
+    background: $gray-xxxl;
+    @include radius(medium);
+    padding: $base-spacing;
+}
+
+kbd {
+    padding: $kbd-padding-y $kbd-padding-x;
+    font-size: $kbd-font-size;
+    color: $kbd-color;
+    background-color: $kbd-bg;
+    @include radius($kbd-border-radius);
+    @include shadow($kbd-box-shadow);
+    
+    kbd {
+        padding: 0;
+        font-weight: $kbd-font-weight-nested;
+        @include shadow(none);
+    }
+}
+
+var {
+    font-style: $var-font-style;
+}
+
+samp {
+    font-size: $samp-font-size;
+}
+
+abbr[title] {
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    text-decoration-color: $abbr-text-decoration-color;
+    cursor: help;
+    border-bottom: 0;
+}
+
+.blockquote {
+	font-size: $text-mobile-size * $large-multiplier;
+    margin: 0 0 $p-margin-bottom;
+    
+    .quote::before {
+        content: "\201C";
+    }
+
+    .quote::after {
+        content: "\201D";
+    }
+    
+    .cite {
+        color: $bq-footer-color;
+        
+        &::before {
+            content: '\2014 \00A0';
+        }   
+    }
+}
+
+@media (min-width: $breakpoint-lg) {
+	.blockquote {
+		font-size: $text-desktop-size * $large-multiplier;
+	}
+}
+
+caption {
+    padding-top:    $base-spacing / 2;
+    padding-bottom: $base-spacing / 2;
+    color:          $caption-color;
+    caption-side:   bottom;
+}

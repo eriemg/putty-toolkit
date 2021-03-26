@@ -1,0 +1,59 @@
+$size-divisions: (2, 3, 4, 10) !default;
+$block-array: ();
+
+// Function to generate non-redundant array of values based on $size-divisions
+@each $division in $size-divisions {
+	
+	$block-divisor: $division;
+	$block-dividend: $division;
+
+	@while $block-divisor > 0 {
+
+		$block-width: ($block-divisor / $block-dividend) * 100;
+
+		@if index($block-array, $block-width) {
+			//Value found in list, skip value
+		} @else {
+			$block-array: append($block-array, $block-width);
+		}
+
+		$block-divisor: $block-divisor - 1;
+	}
+
+}
+
+@each $breakpoint in $breaks {
+
+	$suffix: nth($breakpoint, 1);
+	$size: nth($breakpoint, 2);
+	
+	@if $size == 0 {
+		
+		@each $block-width in $block-array {
+
+		$class-infix: floor($block-width);
+		
+		.width-#{$class-infix} {width: $block-width * 1%;}
+		.max-width-#{$class-infix} {max-width: $block-width * 1%;}
+		.height-#{$class-infix} {height: $block-width * 1%;}
+		.max-height-#{$class-infix} {max-height: $block-width * 1%;}
+			
+		}
+
+	} @else {
+		@media (min-width: $size) {
+			@each $block-width in $block-array {
+
+			$class-infix: floor($block-width);
+
+				.width-#{$class-infix}#{$suffix} {width: $block-width * 1%;}
+				.max-width-#{$class-infix}#{$suffix} {max-width: $block-width * 1%;}
+				.height-#{$class-infix}#{$suffix} {height: $block-width * 1%;}
+				.max-height-#{$class-infix}#{$suffix} {max-height: $block-width * 1%;}
+
+			}
+		}
+
+	} //END if/else
+
+} //END @each

@@ -1,0 +1,67 @@
+$badge-font-size:       .75em !default;
+$badge-font-weight:     400 !default;
+$badge-size:            1.75 !default;
+$badge-border-radius:	small !default;
+$badge-shadow:          none !default;
+
+.badge {
+display: inline-block;
+font-size: $badge-font-size;
+font-weight: $badge-font-weight;
+line-height: $badge-size;
+padding: 0 (($badge-size / 3) * .75em);
+text-align: center;
+white-space: nowrap;
+vertical-align: baseline;
+@include radius($badge-border-radius);
+@include shadow($badge-shadow);
+transition: all $transition-duration $transition-timing;
+
+	&:empty {
+		display: none;
+	}
+}
+
+.btn .badge {
+	position: relative;
+	top: -.05em;
+}
+
+.badge.badge-pill {
+    padding: 0 (($badge-size / 3) * 1em);
+    @include radius(custom, $badge-size * .5em);
+}
+
+*[href].badge {
+	text-decoration: none;
+}
+
+@each $value in $btn-colors {
+
+	$suffix: nth($value, 1);
+	$tone: nth($value, 2);
+	$text-step: nth($value, 3);
+	$bg-step: nth($value, 4);
+	$text-hover-step: nth($value, 5);
+	$bg-hover-step: nth($value, 6);
+	$text-disabled-step: nth($value, 7);
+	$bg-disabled-step: nth($value, 8);
+
+    .badge-#{$suffix} {
+        background-color: color($tone, $text-step);
+        color: color($tone, $bg-step);
+    }
+    
+    *[href]:hover .badge-#{$suffix}, .badge-#{$suffix}[href]:hover,
+    *[href]:focus .badge-#{$suffix}, .badge-#{$suffix}[href]:focus,
+    *[href]:active .badge-#{$suffix}, .badge-#{$suffix}[href]:active {
+		background-color: color($tone, $text-hover-step);
+		color: color($tone, $bg-hover-step);
+    }
+    
+	*[href]:disabled .badge-#{$suffix}, .badge-#{$suffix}[href]:disabled {
+		background-color: color($tone, $bg-disabled-step);
+		color: color($tone, $text-disabled-step);
+	}
+
+}

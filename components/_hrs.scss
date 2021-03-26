@@ -1,0 +1,28 @@
+$hr-width:		1px !default;
+$hr-style:		solid !default;
+$hr-color:		$gray-xxl !default;
+$hr-spacing:	2rem !default;
+
+hr {
+    border: none;
+    border-top-width: $hr-width;
+    border-top-style: $hr-style;
+    border-top-color: $hr-color;
+	margin-top: $hr-spacing;
+	margin-bottom: $hr-spacing;
+}
+
+.grid > hr {
+	width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grid.gutters > hr {
+    width: $grid-width - $grid-margin;
+}
+
+hr.double {
+		border-top-width: .25rem;
+		border-top-style: double;
+	}

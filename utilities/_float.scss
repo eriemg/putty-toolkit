@@ -1,0 +1,23 @@
+@each $breakpoint in $breaks {
+
+	$suffix: nth($breakpoint, 1);
+	$size: nth($breakpoint, 2);
+    
+	@if $size == 0 {
+		.flt-left {float: left;}
+		.flt-right {float: right;}
+		.flt-none {float: none;}
+	} @else {
+		@media (min-width: $size) {
+		.flt-left#{$suffix} {float: left;}
+		.flt-right#{$suffix} {float: right;}
+		.flt-none#{$suffix} {float: none;}
+		}
+	}
+}
+
+.clear-float::after {
+    display: block;
+    content: "";
+    clear: both;
+}

@@ -1,0 +1,17 @@
+$figure-caption-font-size:	1rem !default;
+$figure-caption-color:		$gray !default;
+
+img {
+	max-width: 100%;
+    height: auto;
+}
+
+figure {
+    display: inline-block;
+    margin: 0 0 $base-spacing;
+    
+    figcaption {
+        font-size: $figure-caption-font-size;
+        color: $figure-caption-color;
+    }
+}

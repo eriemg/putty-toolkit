@@ -1,0 +1,124 @@
+$alert-padding:				.75rem  !default;
+$alert-margin-bottom:		$margin !default;
+$alert-border-width:		.1rem !default;
+$alert-border-style:		solid !default;
+$alert-border-radius:		small !default;
+$alert-shadow:				none !default;
+$alert-outline-width:		.2rem !default;
+$alert-base-color-step:		5 !default;
+
+$alert-colors: (
+    ( "primary", primary, 5, 0, 5,-1 ),
+    ( "secondary", secondary, 5, 0, 5,-1 ),
+    ( "tertiary", tertiary, 5, 0, 5,-1 ),
+    ( "info", info, 5, 0, 5,-1 ),
+    ( "success", success, 5, 0, 5,-1 ),
+    ( "warning", warning, -5, 0,-5,-1 ),
+    ( "danger", danger, 5, 0, 5,-1 ),
+    ( "gray", gray, 5, 0, 5,-1 ),
+    ( "light", gray, -5, 5,-5, 4 ),
+    ( "dark", gray, 5,-5, 5,-3 )
+);
+
+.alert {
+    position:       relative;
+    padding:        $alert-padding;
+    @include        border-radius($alert-border-radius);
+    @include        border();
+    margin-bottom:  $alert-margin-bottom;
+    
+    & h1, & .h1,
+    & h2, & .h2,
+    & h3, & .h3,
+    & h4, & .h4,
+    & h5, & .h5,
+    & h6, & .h6,
+    & .display-1,
+    & .display-2,
+    & .display-3,
+    & .display-4,
+    & p {
+        margin: 0;
+    }
+}
+
+.alert-icon {
+    padding-left:   $alert-padding * 3;
+}
+
+.alert-dismissible {
+    padding-right:   $alert-padding * 3.5;
+}
+
+
+.alert-icon > .icon {
+    position:       absolute;
+    top:            $alert-padding;
+    left:           $alert-padding;
+    margin:         .4rem 0 0 0;
+}
+
+.alert .close {
+    position:       absolute;
+    top:            $alert-padding;
+    right:          $alert-padding;
+    background:     none;
+    border:         none;
+    cursor:         pointer;
+    padding:        .2em;
+    line-height:    1;
+    
+}
+
+.alert .close:focus,
+.alert .close:active {
+    outline: none;
+}
+
+.alert .close .icon {
+    margin:         0;
+}
+
+@each $value in $alert-colors {
+
+	$suffix: nth($value, 1);
+	$tone: nth($value, 2);
+	$text-step: nth($value, 3);
+	$bg-step: nth($value, 4);
+	$border-step: nth($value, 4);
+	$text-hover-step: nth($value, 5);
+	$bg-hover-step: nth($value, 6);
+	$border-hover-step: nth($value, 6);
+    
+    .alert-#{$suffix} {
+        background:     color($tone, $alert-background-color-lightness);
+        color:          color($tone, $alert-text-color-lightness);
+        border-color:   color($tone, $alert-border-color-lightness);
+        
+        a {
+            color:          color($tone, $alert-text-color-lightness);
+        }
+
+        & a:hover,
+        & a:active,
+        & a:focus {
+            color:          color($tone, $alert-text-color-lightness);
+        }
+
+        hr {
+            border-color: color($tone, $alert-border-color-lightness);
+        }
+
+        .icon {
+            fill:           color($tone, $alert-icon-color-lightness);
+        }
+
+        & .close:hover .icon,
+        & .close:active .icon,
+        & .close:focus .icon {
+            fill:           color($tone, $alert-text-color-lightness);
+        }
+        
+    }
+    
+}

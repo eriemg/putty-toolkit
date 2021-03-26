@@ -1,0 +1,109 @@
+$grid-cell-max:		10 !default;
+$grid-margin:       2% !default;
+$grid-width:        100% !default;
+
+$container-max-width:	1200px !default;
+
+.container {
+	width: 100%;
+	max-width: $container-max-width;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;
+	
+	&.full-width {
+		max-width: none;
+	}
+}
+
+.grid {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin-left: ($grid-margin / 2) * -1;
+	margin-right: ($grid-margin / 2) * -1;
+}
+
+.grid.gutters {
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: $grid-margin / 2;
+	padding-right: $grid-margin / 2;
+}
+
+[class^="c-"], [class*=" c-"] {
+	width: 100%;
+	margin-left: $grid-margin / 2;
+	margin-right: $grid-margin / 2;
+	margin-bottom: $grid-margin;
+}
+
+@each $breakpoint in $breaks {
+	
+	$grid-cell-counter: $grid-cell-max;
+
+	$suffix: nth($breakpoint, 1);
+	$size: nth($breakpoint, 2);
+	
+	@if $size == 0 {
+
+	@while $grid-cell-counter > 0 {
+
+		$grid-divisor: $grid-cell-counter;
+		$grid-dividend: $grid-cell-counter;
+
+		$grid-margins-width: $grid-width - ($grid-dividend * $grid-margin);
+		$grid-single-margins-width: $grid-margins-width + ($grid-margin / 2);
+
+		@while $grid-divisor > 0 {
+			
+			.c-#{$grid-divisor}-#{$grid-dividend} {width: (($grid-margins-width / $grid-dividend) * $grid-divisor) + (($grid-divisor - 1) * $grid-margin);}
+
+			.c-#{$grid-divisor}-#{$grid-dividend}.m-l-0,
+			.c-#{$grid-divisor}-#{$grid-dividend}.m-r-0 {width: (($grid-single-margins-width / $grid-dividend) * $grid-divisor) + (($grid-divisor - 1) * $grid-margin);}
+		
+			.c-#{$grid-divisor}-#{$grid-dividend}.m-0,
+			.c-#{$grid-divisor}-#{$grid-dividend}.m-x-0 {width: ($grid-width / $grid-dividend) * $grid-divisor;}
+		
+			$grid-divisor: $grid-divisor - 1;
+		
+		}
+
+		$grid-cell-counter: $grid-cell-counter - 1;
+
+	} //END While $grid-cell-number
+
+	} @else {
+		@media (min-width: $size) {
+
+			@while $grid-cell-counter > 0 {
+
+				$grid-divisor: $grid-cell-counter;
+				$grid-dividend: $grid-cell-counter;
+
+				$grid-margins-width: $grid-width - ($grid-cell-counter * $grid-margin);
+				$grid-single-margins-width: $grid-width - (($grid-cell-counter - 1) * $grid-margin);
+
+				@while $grid-divisor > 0 {
+
+					.c-#{$grid-divisor}-#{$grid-dividend}#{$suffix} {width: (($grid-margins-width / $grid-dividend) * $grid-divisor) + (($grid-divisor - 1) * $grid-margin);}
+
+					.c-#{$grid-divisor}-#{$grid-dividend}#{$suffix}.m-l-0,
+					.c-#{$grid-divisor}-#{$grid-dividend}#{$suffix}.m-r-0 {width: (($grid-single-margins-width / $grid-dividend) * $grid-divisor) + (($grid-divisor - 1) * $grid-margin);}
+
+					.c-#{$grid-divisor}-#{$grid-dividend}#{$suffix}.m-0,
+					.c-#{$grid-divisor}-#{$grid-dividend}#{$suffix}.m-x-0 {width: ($grid-width / $grid-dividend) * $grid-divisor;}
+
+					$grid-divisor: $grid-divisor - 1;
+
+				}
+
+				$grid-cell-counter: $grid-cell-counter - 1;
+
+			} //END While $grid-cell-number
+
+		}
+
+	} //END if/else
+
+} //END @each

@@ -1,0 +1,316 @@
+$primary: 			#2E86C1 !default;
+$secondary:         #7D3C98 !default;
+$tertiary:			#666666 !default;
+$gray:              #606B6C !default;
+$info:              #138D75 !default;
+$success:           #3A833C !default;
+$warning:           #FFC107 !default;
+$danger:            #EB002F !default;
+$saturation-ratio:	1.5 !default;
+$lightness-high:    95 !default;
+$lightness-low:     15 !default;
+
+
+// STEPPED GRADIENT COLOR VARIABLES //
+
+// PRIMARY //
+$primary-hue:       		hue($primary);
+$primary-saturation:		saturation($primary);
+$primary-lightness:			lightness($primary);
+$primary-saturation-min:	$primary-saturation / $saturation-ratio;
+$primary-saturation-down:	($primary-saturation - $primary-saturation-min) / 4;
+$primary-lightness-up:		($lightness-high - $primary-lightness) / 4;
+$primary-lightness-down:	($primary-lightness - $lightness-low) / 4;
+
+// SECONDARY //
+$secondary-hue:       		hue($secondary);
+$secondary-saturation:		saturation($secondary);
+$secondary-lightness:		lightness($secondary);
+$secondary-saturation-min:	$secondary-saturation / $saturation-ratio;
+$secondary-saturation-down:	($secondary-saturation - $secondary-saturation-min) / 4;
+$secondary-lightness-up:	($lightness-high - $secondary-lightness) / 4;
+$secondary-lightness-down:	($secondary-lightness - $lightness-low) / 4;
+
+// TERTIARY //
+$tertiary-hue:       		hue($tertiary);
+$tertiary-saturation:		saturation($tertiary);
+$tertiary-lightness:		lightness($tertiary);
+$tertiary-saturation-min:	$tertiary-saturation / $saturation-ratio;
+$tertiary-saturation-down:	($tertiary-saturation - $tertiary-saturation-min) / 4;
+$tertiary-lightness-up:		($lightness-high - $tertiary-lightness) / 4;
+$tertiary-lightness-down:	($tertiary-lightness - $lightness-low) / 4;
+
+// GRAY //
+$gray-hue:       			hue($gray);
+$gray-saturation:			saturation($gray);
+$gray-lightness:			lightness($gray);
+$gray-saturation-min:		$gray-saturation / $saturation-ratio;
+$gray-saturation-down:		($gray-saturation - $gray-saturation-min) / 4;
+$gray-lightness-up:			($lightness-high - $gray-lightness) / 4;
+$gray-lightness-down:		($gray-lightness - $lightness-low) / 4;
+
+// INFO //
+$info-hue:       			hue($info);
+$info-saturation:			saturation($info);
+$info-lightness:			lightness($info);
+$info-saturation-min:		$info-saturation / $saturation-ratio;
+$info-saturation-down:		($info-saturation - $info-saturation-min) / 4;
+$info-lightness-up:			($lightness-high - $info-lightness) / 4;
+$info-lightness-down:		($info-lightness - $lightness-low) / 4;
+
+// SUCCESS //
+$success-hue:       		hue($success);
+$success-saturation:		saturation($success);
+$success-lightness:			lightness($success);
+$success-saturation-min:	$success-saturation / $saturation-ratio;
+$success-saturation-down:	($success-saturation - $success-saturation-min) / 4;
+$success-lightness-up:		($lightness-high - $success-lightness) / 4;
+$success-lightness-down:	($success-lightness - $lightness-low) / 4;
+
+// WARNING //
+$warning-hue:       		hue($warning);
+$warning-saturation:		saturation($warning);
+$warning-lightness:			lightness($warning);
+$warning-saturation-min:	$warning-saturation / $saturation-ratio;
+$warning-saturation-down:	($warning-saturation - $warning-saturation-min) / 4;
+$warning-lightness-up:		($lightness-high - $warning-lightness) / 4;
+$warning-lightness-down:	($warning-lightness - $lightness-low) / 4;
+
+// DANGER //
+$danger-hue:       			hue($danger);
+$danger-saturation:			saturation($danger);
+$danger-lightness:			lightness($danger);
+$danger-saturation-min:		$danger-saturation / $saturation-ratio;
+$danger-saturation-down:	($danger-saturation - $danger-saturation-min) / 4;
+$danger-lightness-up:		($lightness-high - $danger-lightness) / 4;
+$danger-lightness-down:		($danger-lightness - $lightness-low) / 4;
+
+
+// COLORS ARRAY //
+$colors: (
+    
+    primary: (
+        0:      hsl(0,0,0),
+        1:      hsl($primary-hue, $primary-saturation, $primary-lightness - $primary-lightness-down * 4),
+        2:      hsl($primary-hue, $primary-saturation, $primary-lightness - $primary-lightness-down * 3),
+        3:      hsl($primary-hue, $primary-saturation, $primary-lightness - $primary-lightness-down * 2),
+        4:      hsl($primary-hue, $primary-saturation, $primary-lightness - $primary-lightness-down),
+        5:      $primary,
+        6:      hsl($primary-hue, $primary-saturation - $primary-saturation-down, $primary-lightness + $primary-lightness-up),
+        7:      hsl($primary-hue, $primary-saturation - $primary-saturation-down * 2, $primary-lightness + $primary-lightness-up * 2),
+        8:      hsl($primary-hue, $primary-saturation - $primary-saturation-down * 3, $primary-lightness + $primary-lightness-up * 3),
+        9:      hsl($primary-hue, $primary-saturation - $primary-saturation-down * 4, $primary-lightness + $primary-lightness-up * 4),
+       10:      hsl(0,0,100%)
+    ),
+    secondary: (
+        0:      hsl(0,0,0),
+        1:      hsl($secondary-hue, $secondary-saturation, $secondary-lightness - $secondary-lightness-down * 4),
+        2:      hsl($secondary-hue, $secondary-saturation, $secondary-lightness - $secondary-lightness-down * 3),
+        3:      hsl($secondary-hue, $secondary-saturation, $secondary-lightness - $secondary-lightness-down * 2),
+        4:      hsl($secondary-hue, $secondary-saturation, $secondary-lightness - $secondary-lightness-down),
+        5:      $secondary,
+        6:      hsl($secondary-hue, $secondary-saturation - $secondary-saturation-down, $secondary-lightness + $secondary-lightness-up),
+        7:      hsl($secondary-hue, $secondary-saturation - $secondary-saturation-down * 2, $secondary-lightness + $secondary-lightness-up * 2),
+        8:      hsl($secondary-hue, $secondary-saturation - $secondary-saturation-down * 3, $secondary-lightness + $secondary-lightness-up * 3),
+        9:      hsl($secondary-hue, $secondary-saturation - $secondary-saturation-down * 4, $secondary-lightness + $secondary-lightness-up * 4),
+       10:      hsl(0,0,100%)
+    ),
+	tertiary: (
+        0:      hsl(0,0,0),
+        1:      hsl($tertiary-hue, $tertiary-saturation, $tertiary-lightness - $tertiary-lightness-down * 4),
+        2:      hsl($tertiary-hue, $tertiary-saturation, $tertiary-lightness - $tertiary-lightness-down * 3),
+        3:      hsl($tertiary-hue, $tertiary-saturation, $tertiary-lightness - $tertiary-lightness-down * 2),
+        4:      hsl($tertiary-hue, $tertiary-saturation, $tertiary-lightness - $tertiary-lightness-down),
+        5:      $tertiary,
+        6:      hsl($tertiary-hue, $tertiary-saturation - $tertiary-saturation-down, $tertiary-lightness + $tertiary-lightness-up),
+        7:      hsl($tertiary-hue, $tertiary-saturation - $tertiary-saturation-down * 2, $tertiary-lightness + $tertiary-lightness-up * 2),
+        8:      hsl($tertiary-hue, $tertiary-saturation - $tertiary-saturation-down * 3, $tertiary-lightness + $tertiary-lightness-up * 3),
+        9:      hsl($tertiary-hue, $tertiary-saturation - $tertiary-saturation-down * 4, $tertiary-lightness + $tertiary-lightness-up * 4),
+       10:      hsl(0,0,100%)
+    ),
+    gray: (
+        0:      hsl(0,0,0),
+        1:      hsl($gray-hue, $gray-saturation, $gray-lightness - $gray-lightness-down * 4),
+        2:      hsl($gray-hue, $gray-saturation, $gray-lightness - $gray-lightness-down * 3),
+        3:      hsl($gray-hue, $gray-saturation, $gray-lightness - $gray-lightness-down * 2),
+        4:      hsl($gray-hue, $gray-saturation, $gray-lightness - $gray-lightness-down),
+        5:      $gray,
+        6:      hsl($gray-hue, $gray-saturation - $gray-saturation-down, $gray-lightness + $gray-lightness-up),
+        7:      hsl($gray-hue, $gray-saturation - $gray-saturation-down * 2, $gray-lightness + $gray-lightness-up * 2),
+        8:      hsl($gray-hue, $gray-saturation - $gray-saturation-down * 3, $gray-lightness + $gray-lightness-up * 3),
+        9:      hsl($gray-hue, $gray-saturation - $gray-saturation-down * 4, $gray-lightness + $gray-lightness-up * 4),
+       10:      hsl(0,0,100%)
+    ),
+    info: (
+        0:      hsl(0,0,0),
+        1:      hsl($info-hue, $info-saturation, $info-lightness - $info-lightness-down * 4),
+        2:      hsl($info-hue, $info-saturation, $info-lightness - $info-lightness-down * 3),
+        3:      hsl($info-hue, $info-saturation, $info-lightness - $info-lightness-down * 2),
+        4:      hsl($info-hue, $info-saturation, $info-lightness - $info-lightness-down),
+        5:      $info,
+        6:      hsl($info-hue, $info-saturation - $info-saturation-down, $info-lightness + $info-lightness-up),
+        7:      hsl($info-hue, $info-saturation - $info-saturation-down * 2, $info-lightness + $info-lightness-up * 2),
+        8:      hsl($info-hue, $info-saturation - $info-saturation-down * 3, $info-lightness + $info-lightness-up * 3),
+        9:      hsl($info-hue, $info-saturation - $info-saturation-down * 4, $info-lightness + $info-lightness-up * 4),
+       10:      hsl(0,0,100%)
+    ),
+    success: (
+        0:      hsl(0,0,0),
+        1:      hsl($success-hue, $success-saturation, $success-lightness - $success-lightness-down * 4),
+        2:      hsl($success-hue, $success-saturation, $success-lightness - $success-lightness-down * 3),
+        3:      hsl($success-hue, $success-saturation, $success-lightness - $success-lightness-down * 2),
+        4:      hsl($success-hue, $success-saturation, $success-lightness - $success-lightness-down),
+        5:      $success,
+        6:      hsl($success-hue, $success-saturation - $success-saturation-down, $success-lightness + $success-lightness-up),
+        7:      hsl($success-hue, $success-saturation - $success-saturation-down * 2, $success-lightness + $success-lightness-up * 2),
+        8:      hsl($success-hue, $success-saturation - $success-saturation-down * 3, $success-lightness + $success-lightness-up * 3),
+        9:      hsl($success-hue, $success-saturation - $success-saturation-down * 4, $success-lightness + $success-lightness-up * 4),
+       10:      hsl(0,0,100%)
+    ),
+    warning: (
+        0:      hsl(0,0,0),
+        1:      hsl($warning-hue, $warning-saturation, $warning-lightness - $warning-lightness-down * 4),
+        2:      hsl($warning-hue, $warning-saturation, $warning-lightness - $warning-lightness-down * 3),
+        3:      hsl($warning-hue, $warning-saturation, $warning-lightness - $warning-lightness-down * 2),
+        4:      hsl($warning-hue, $warning-saturation, $warning-lightness - $warning-lightness-down),
+        5:      $warning,
+        6:      hsl($warning-hue, $warning-saturation - $warning-saturation-down, $warning-lightness + $warning-lightness-up),
+        7:      hsl($warning-hue, $warning-saturation - $warning-saturation-down * 2, $warning-lightness + $warning-lightness-up * 2),
+        8:      hsl($warning-hue, $warning-saturation - $warning-saturation-down * 3, $warning-lightness + $warning-lightness-up * 3),
+        9:      hsl($warning-hue, $warning-saturation - $warning-saturation-down * 4, $warning-lightness + $warning-lightness-up * 4),
+       10:      hsl(0,0,100%)
+    ),
+    danger: (
+        0:      hsl(0,0,0),
+        1:      hsl($danger-hue, $danger-saturation, $danger-lightness - $danger-lightness-down * 4),
+        2:      hsl($danger-hue, $danger-saturation, $danger-lightness - $danger-lightness-down * 3),
+        3:      hsl($danger-hue, $danger-saturation, $danger-lightness - $danger-lightness-down * 2),
+        4:      hsl($danger-hue, $danger-saturation, $danger-lightness - $danger-lightness-down),
+        5:      $danger,
+        6:      hsl($danger-hue, $danger-saturation - $danger-saturation-down, $danger-lightness + $danger-lightness-up),
+        7:      hsl($danger-hue, $danger-saturation - $danger-saturation-down * 2, $danger-lightness + $danger-lightness-up * 2),
+        8:      hsl($danger-hue, $danger-saturation - $danger-saturation-down * 3, $danger-lightness + $danger-lightness-up * 3),
+        9:      hsl($danger-hue, $danger-saturation - $danger-saturation-down * 4, $danger-lightness + $danger-lightness-up * 4),
+       10:      hsl(0,0,100%)
+    )
+    
+);
+
+// COLOR MAP-GET FUNCTION //
+@function color($color, $step: 5) {
+    
+	$gradient-step: 0;
+
+	@if( $step < 0) {
+		$gradient-step: 0;
+	} @else if( $step > 10) {
+		$gradient-step: 10;
+	} @else {
+		$gradient-step: $step;
+	}
+
+	@return map-get(map-get($colors, $color), $gradient-step);
+}
+
+
+// COLOR GRADIENT SUFFIX
+
+$color-gradients: (
+	1:	'-xxxd',
+	2:	'-xxd',
+	3:	'-xd',
+	4:	'-d',
+	5:	'',
+	6:	'-l',
+	7:	'-xl',
+	8:	'-xxl',
+	9:	'-xxxl'
+);
+
+
+// STEPPED COLOR GRADIENTS
+
+$primary-xxxd: color(primary, 1);
+$primary-xxd:  color(primary, 2);
+$primary-xd:   color(primary, 3);
+$primary-d:    color(primary, 4);    
+$primary-l:    color(primary, 6);
+$primary-xl:   color(primary, 7);
+$primary-xxl:  color(primary, 8);
+$primary-xxxl: color(primary, 9);
+
+$secondary-xxxd: color(secondary, 1);
+$secondary-xxd:  color(secondary, 2);
+$secondary-xd:   color(secondary, 3);
+$secondary-d:    color(secondary, 4);    
+$secondary-l:    color(secondary, 6);
+$secondary-xl:   color(secondary, 7);
+$secondary-xxl:  color(secondary, 8);
+$secondary-xxxl: color(secondary, 9);
+
+$tertiary-xxxd:	color(tertiary, 1);
+$tertiary-xxd:	color(tertiary, 2);
+$tertiary-xd:	color(tertiary, 3);
+$tertiary-d:	color(tertiary, 4);    
+$tertiary-l:	color(tertiary, 6);
+$tertiary-xl:	color(tertiary, 7);
+$tertiary-xxl:	color(tertiary, 8);
+$tertiary-xxxl:	color(tertiary, 9);
+
+$gray-xxxd: color(gray, 1);
+$gray-xxd:  color(gray, 2);
+$gray-xd:   color(gray, 3);
+$gray-d:    color(gray, 4);    
+$gray-l:    color(gray, 6);
+$gray-xl:   color(gray, 7);
+$gray-xxl:  color(gray, 8);
+$gray-xxxl: color(gray, 9);
+
+$success-xxxd:	color(success, 1);
+$success-xxd:	color(success, 2);
+$success-xd:	color(success, 3);
+$success-d:		color(success, 4);    
+$success-l:		color(success, 6);
+$success-xl:	color(success, 7);
+$success-xxl:	color(success, 8);
+$success-xxxl:	color(success, 9);
+
+$warning-xxxd:	color(warning, 1);
+$warning-xxd:	color(warning, 2);
+$warning-xd:	color(warning, 3);
+$warning-d:		color(warning, 4);    
+$warning-l:		color(warning, 6);
+$warning-xl:	color(warning, 7);
+$warning-xxl:	color(warning, 8);
+$warning-xxxl:	color(warning, 9);
+
+$danger-xxxd:	color(danger, 1);
+$danger-xxd:	color(danger, 2);
+$danger-xd:		color(danger, 3);
+$danger-d:		color(danger, 4);    
+$danger-l:		color(danger, 6);
+$danger-xl:		color(danger, 7);
+$danger-xxl:	color(danger, 8);
+$danger-xxxl:	color(danger, 9);
+
+$black: color(gray, 0);
+$white: color(gray, 10);
+
+// FUNCTION TO GENERATE COLOR CLASSES //
+
+@each $color, $step in $colors {
+	
+	@each $color-gradient, $color-gradient-suffix in $color-gradients {
+	
+		.bg-#{$color}#{$color-gradient-suffix} {background-color: color($color, $color-gradient);}
+		.#{$color}#{$color-gradient-suffix} 	{color: color($color, $color-gradient); fill: color($color, $color-gradient);}
+	}
+}
+
+.bg-black {background-color: color(gray, 0);}
+.border-black {border-color: color(gray, 0);}
+.black {color: color(gray, 0); fill: color(gray, 0);}
+
+.bg-white {background-color: color(gray, 10);}
+.border-white {border-color: color(gray, 10);}
+.white {color: color(gray, 10); fill: color(gray, 10);}

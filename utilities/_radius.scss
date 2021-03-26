@@ -1,0 +1,209 @@
+$border-radius-sm:  .25rem !default;
+$border-radius-md:  .5rem !default;
+$border-radius-lg:  1rem !default;
+
+@mixin radius ($size: "small", $radius: $border-radius-sm) {
+    
+    @if $size == "small" {
+        border-radius: $border-radius-sm;
+    } @else if $size == "medium" {
+        border-radius: $border-radius-md;
+    } @else if $size == "large" {
+        border-radius: $border-radius-lg;
+    } @else {
+		border-radius: 0;
+	}
+}
+
+@mixin radius-top-left ($size: "small", $radius: $border-radius-sm) {
+    
+    @if $size == "small" {
+        border-top-left-radius: $border-radius-sm;
+    } @else if $size == "medium" {
+        border-top-left-radius: $border-radius-md;
+    } @else if $size == "large" {
+        border-top-left-radius: $border-radius-lg;
+    } @else {
+		border-top-left-radius: 0;
+	}
+}
+
+@mixin radius-top-right ($size: "small", $radius: $border-radius-sm) {
+    
+    @if $size == "small" {
+        border-top-right-radius: $border-radius-sm;
+    } @else if $size == "medium" {
+        border-top-right-radius: $border-radius-md;
+    } @else if $size == "large" {
+        border-top-right-radius: $border-radius-lg;
+    } @else {
+		border-top-right-radius: 0;
+	}
+}
+
+@mixin radius-bottom-right ($size: "small", $radius: $border-radius-sm) {
+    
+    @if $size == "small" {
+        border-bottom-right-radius: $border-radius-sm;
+    } @else if $size == "medium" {
+        border-bottom-right-radius: $border-radius-md;
+    } @else if $size == "large" {
+        border-bottom-right-radius: $border-radius-lg;
+    } @else {
+		border-bottom-right-radius: 0;
+	}
+}
+
+@mixin radius-bottom-left ($size: "small", $radius: $border-radius-sm) {
+    
+    @if $size == "small" {
+        border-bottom-left-radius: $border-radius-sm;
+    } @else if $size == "medium" {
+        border-bottom-left-radius: $border-radius-md;
+    } @else if $size == "large" {
+        border-bottom-left-radius: $border-radius-lg;
+    } @else {
+		border-bottom-left-radius: 0;
+	}
+}
+
+@mixin radius-top ($size: "small", $radius: $border-radius-sm) {
+    
+    @if $size == "small" {
+        border-top-left-radius: $border-radius-sm;
+        border-top-right-radius: $border-radius-sm;
+    } @else if $size == "medium" {
+        border-top-left-radius: $border-radius-md;
+        border-top-right-radius: $border-radius-md;
+    } @else if $size == "large" {
+        border-top-left-radius: $border-radius-lg;
+        border-top-right-radius: $border-radius-lg;
+    } @else {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+}
+
+@mixin radius-right ($size: "small", $radius: $border-radius-sm) {
+    
+    @if $size == "small" {
+        border-top-right-radius: $border-radius-sm;
+        border-bottom-right-radius: $border-radius-sm;
+    } @else if $size == "medium" {
+        border-top-right-radius: $border-radius-md;
+        border-bottom-right-radius: $border-radius-md;
+    } @else if $size == "large" {
+        border-top-right-radius: $border-radius-lg;
+        border-bottom-right-radius: $border-radius-lg;
+    } @else {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+}
+
+@mixin radius-bottom ($size: "small", $radius: $border-radius-sm) {
+    
+    @if $size == "small" {
+        border-bottom-left-radius: $border-radius-sm;
+        border-bottom-right-radius: $border-radius-sm;
+    } @else if $size == "medium" {
+        border-bottom-left-radius: $border-radius-md;
+        border-bottom-right-radius: $border-radius-md;
+    } @else if $size == "large" {
+        border-bottom-left-radius: $border-radius-lg;
+        border-bottom-right-radius: $border-radius-lg;
+    } @else {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+}
+
+@mixin radius-left ($size: "small", $radius: $border-radius-sm) {
+    
+    @if $size == "small" {
+        border-top-left-radius: $border-radius-sm;
+        border-bottom-left-radius: $border-radius-sm;
+    } @else if $size == "medium" {
+        border-top-left-radius: $border-radius-md;
+        border-bottom-left-radius: $border-radius-md;
+    } @else if $size == "large" {
+        border-top-left-radius: $border-radius-lg;
+        border-bottom-left-radius: $border-radius-lg;
+    } @else {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}
+
+@mixin radius-custom ($tl, $tr: $tl, $br: $tl, $bl: $tl) {
+    border-radius: $tl $tr $br $bl;
+}
+
+@each $breakpoint in $breaks {
+
+	$suffix: nth($breakpoint, 1);
+	$size: nth($breakpoint, 2);
+    
+	@if $size == 0 {
+		.rad-small {@include radius(small);}
+		.rad-medium {@include radius(medium);}
+		.rad-large {@include radius(large);}
+		.rad-circle {@include radius-custom(50%);}
+		.rad-top-small {@include radius-top(small);}
+		.rad-right-small {@include radius-right(small);}
+		.rad-bottom-small {@include radius-bottom(small);}
+		.rad-left-small {@include radius-left(small);}
+		.rad-top-medium {@include radius-top(medium);}
+		.rad-right-medium {@include radius-right(medium);}
+		.rad-bottom-medium {@include radius-bottom(medium);}
+		.rad-left-medium {@include radius-left(medium);}
+		.rad-top-large {@include radius-top(large);}
+		.rad-right-large {@include radius-right(large);}
+		.rad-bottom-large {@include radius-bottom(large);}
+		.rad-left-large {@include radius-left(large);}
+		.rad-top-left-small {@include radius-top-left(small);}
+		.rad-top-right-small {@include radius-top-right(small);}
+		.rad-bottom-right-small {@include radius-bottom-right(small);}
+		.rad-bottom-left-small {@include radius-bottom-left(small);}
+		.rad-top-left-medium {@include radius-top-left(medium);}
+		.rad-top-right-medium {@include radius-top-right(medium);}
+		.rad-bottom-right-medium {@include radius-bottom-right(medium);}
+		.rad-bottom-left-medium {@include radius-bottom-left(medium);}
+		.rad-top-left-large {@include radius-top-left(large);}
+		.rad-top-right-large {@include radius-top-right(large);}
+		.rad-bottom-right-large {@include radius-bottom-right(large);}
+		.rad-bottom-left-large {@include radius-bottom-left(large);}
+	} @else {
+		@media (min-width: $size) {
+			.rad-small#{$suffix} {@include radius(small);}
+			.rad-medium#{$suffix} {@include radius(medium);}
+			.rad-large#{$suffix} {@include radius(large);}
+			.rad-circle#{$suffix} {@include radius-custom(50%);}
+			.rad-top-small#{$suffix} {@include radius-top(small);}
+			.rad-right-small#{$suffix} {@include radius-right(small);}
+			.rad-bottom-small#{$suffix} {@include radius-bottom(small);}
+			.rad-left-small#{$suffix} {@include radius-left(small);}
+			.rad-top-medium#{$suffix} {@include radius-top(medium);}
+			.rad-right-medium#{$suffix} {@include radius-right(medium);}
+			.rad-bottom-medium#{$suffix} {@include radius-bottom(medium);}
+			.rad-left-medium#{$suffix} {@include radius-left(medium);}
+			.rad-top-large#{$suffix} {@include radius-top(large);}
+			.rad-right-large#{$suffix} {@include radius-right(large);}
+			.rad-bottom-large#{$suffix} {@include radius-bottom(large);}
+			.rad-left-large#{$suffix} {@include radius-left(large);}
+			.rad-top-left-small#{$suffix} {@include radius-top-left(small);}
+			.rad-top-right-small#{$suffix} {@include radius-top-right(small);}
+			.rad-bottom-right-small#{$suffix} {@include radius-bottom-right(small);}
+			.rad-bottom-left-small#{$suffix} {@include radius-bottom-left(small);}
+			.rad-top-left-medium#{$suffix} {@include radius-top-left(medium);}
+			.rad-top-right-medium#{$suffix} {@include radius-top-right(medium);}
+			.rad-bottom-right-medium#{$suffix} {@include radius-bottom-right(medium);}
+			.rad-bottom-left-medium#{$suffix} {@include radius-bottom-left(medium);}
+			.rad-top-left-large#{$suffix} {@include radius-top-left(large);}
+			.rad-top-right-large#{$suffix} {@include radius-top-right(large);}
+			.rad-bottom-right-large#{$suffix} {@include radius-bottom-right(large);}
+			.rad-bottom-left-large#{$suffix} {@include radius-bottom-left(large);}
+		}
+	}
+}
+

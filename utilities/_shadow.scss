@@ -1,0 +1,83 @@
+$shadow-color:   	rgba(0,0,0,.1) !default;
+
+$shadow-small-x:       0 !default;
+$shadow-small-y:       .25rem !default;
+$shadow-small-blur:    .25rem !default;
+
+$shadow-medium-x:       0 !default;
+$shadow-medium-y:       .5rem !default;
+$shadow-medium-blur:    .5rem !default;
+
+$shadow-large-x:       0 !default;
+$shadow-large-y:       1rem !default;
+$shadow-large-blur:    1rem !default;
+
+@mixin shadow ($size: "small", $inset: false) {
+
+    @if $inset {
+		
+        @if $size == "small" {
+            box-shadow: inset $shadow-small-x $shadow-small-y $shadow-small-blur $shadow-color;
+        } @else if $size == "medium" {
+            box-shadow: inset $shadow-medium-x $shadow-medium-y $shadow-medium-blur $shadow-color;
+        } @else if $size == "large" {
+            box-shadow: inset $shadow-large-x $shadow-large-y $shadow-large-blur $shadow-color;
+        } @else {
+			box-shadow: none;
+        }
+		
+    } @else {
+		
+        @if $size == "small" {
+            box-shadow: $shadow-small-x $shadow-small-y $shadow-small-blur $shadow-color;
+        } @else if $size == "medium" {
+            box-shadow: $shadow-medium-x $shadow-medium-y $shadow-medium-blur $shadow-color;
+        } @else if $size == "large" {
+            box-shadow: $shadow-large-x $shadow-large-y $shadow-large-blur $shadow-color;
+        } @else {
+            box-shadow: none;
+        }
+    }
+}
+
+@mixin shadow-custom ($x: $shadow-small-x, $y: $shadow-small-y, $blur: $shadow-small-blur, $spread: 0, $color: $shadow-color, $inset: false) {
+
+    @if $inset {
+        -webkit-box-shadow: inset $x $y $blur $spread $color;
+        -moz-box-shadow:    inset $x $y $blur $spread $color;
+        box-shadow:         inset $x $y $blur $spread $color;
+    } 
+    
+    @else {
+        -webkit-box-shadow: $x $y $blur $spread $color;
+        -moz-box-shadow:    $x $y $blur $spread $color;
+        box-shadow:         $x $y $blur $spread $color;
+    }
+    
+}
+
+@each $breakpoint in $breaks {
+
+	$suffix: nth($breakpoint, 1);
+	$size: nth($breakpoint, 2);
+    
+	@if $size == 0 {
+		.shd-small {@include shadow;}
+		.shd-medium {@include shadow(medium);}
+		.shd-large {@include shadow(large);}
+		.shd-inset-small {@include shadow(small,true);}
+		.shd-inset-medium {@include shadow(medium,true);}
+		.shd-inset-large {@include shadow(large,true);}
+		.shd-none {box-shadow: none;}
+	} @else {
+		@media (min-width: $size) {
+		.shd-small#{$suffix} {@include shadow;}
+		.shd-medium#{$suffix} {@include shadow(medium);}
+		.shd-large#{$suffix} {@include shadow(large);}
+		.shd-inset-small#{$suffix} {@include shadow(small,true);}
+		.shd-inset-medium#{$suffix} {@include shadow(medium,true);}
+		.shd-inset-large#{$suffix} {@include shadow(large,true);}
+		.shd-none#{$suffix} {box-shadow: none;}
+		}
+	}
+}

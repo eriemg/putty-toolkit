@@ -1,0 +1,8 @@
+$rotate-angle-step: 15 !default; //adjusts the granularity of supported rotation angles by degrees
+
+$rotate-step: $rotate-angle-step;
+
+@while $rotate-step < 360 {
+	.rotate-#{$rotate-step} {transform: rotate(#{$rotate-step}deg);}
+	$rotate-step: $rotate-step + $rotate-angle-step;
+}
