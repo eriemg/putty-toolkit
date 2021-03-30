@@ -1,5 +1,5 @@
 $alert-padding:				.75rem  !default;
-$alert-margin-bottom:		$margin !default;
+$alert-margin-bottom:		$base-spacing !default;
 $alert-border-width:		.1rem !default;
 $alert-border-style:		solid !default;
 $alert-border-radius:		small !default;
@@ -7,23 +7,10 @@ $alert-shadow:				none !default;
 $alert-outline-width:		.2rem !default;
 $alert-base-color-step:		5 !default;
 
-$alert-colors: (
-    ( "primary", primary, 5, 0, 5,-1 ),
-    ( "secondary", secondary, 5, 0, 5,-1 ),
-    ( "tertiary", tertiary, 5, 0, 5,-1 ),
-    ( "info", info, 5, 0, 5,-1 ),
-    ( "success", success, 5, 0, 5,-1 ),
-    ( "warning", warning, -5, 0,-5,-1 ),
-    ( "danger", danger, 5, 0, 5,-1 ),
-    ( "gray", gray, 5, 0, 5,-1 ),
-    ( "light", gray, -5, 5,-5, 4 ),
-    ( "dark", gray, 5,-5, 5,-3 )
-);
-
 .alert {
     position:       relative;
     padding:        $alert-padding;
-    @include        border-radius($alert-border-radius);
+    @include        radius($alert-border-radius);
     @include        border();
     margin-bottom:  $alert-margin-bottom;
     
@@ -79,46 +66,57 @@ $alert-colors: (
     margin:         0;
 }
 
+$alert-colors: (
+    ( "primary", primary, 0, 4, 2, -1 ),
+    ( "secondary", secondary, 0, 4, 2, -1 ),
+    ( "tertiary", tertiary, 0, 4, 2, -1 ),
+    ( "info", info, 0, 4, 2, -1 ),
+    ( "success", success, 0, 4, 2, -1 ),
+    ( "warning", warning, 0, 4, 2, -1 ),
+    ( "danger", danger, 0, 4, 2, -1 ),
+    ( "gray", gray, 0, 4, 2, -1 ),
+    ( "light", gray, -5, 5,-5, 4 ),
+    ( "dark", gray, 5,-5, 5,-3 )
+);
+
 @each $value in $alert-colors {
 
 	$suffix: nth($value, 1);
 	$tone: nth($value, 2);
 	$text-step: nth($value, 3);
 	$bg-step: nth($value, 4);
-	$border-step: nth($value, 4);
-	$text-hover-step: nth($value, 5);
-	$bg-hover-step: nth($value, 6);
-	$border-hover-step: nth($value, 6);
+	$border-step: nth($value, 5);
+	$text-hover-step: nth($value, 6);
     
     .alert-#{$suffix} {
-        background:     color($tone, $alert-background-color-lightness);
-        color:          color($tone, $alert-text-color-lightness);
-        border-color:   color($tone, $alert-border-color-lightness);
+        background:			color($tone, $alert-base-color-step + $bg-step);
+        color:				color($tone, $alert-base-color-step + $text-step);
+        border-color:   	color($tone, $alert-base-color-step + $border-step);
         
         a {
-            color:          color($tone, $alert-text-color-lightness);
+            color:          color($tone, $alert-base-color-step + $text-step);
         }
 
         & a:hover,
         & a:active,
         & a:focus {
-            color:          color($tone, $alert-text-color-lightness);
+            color:          color($tone, $alert-base-color-step + $text-hover-step);
         }
 
         hr {
-            border-color: color($tone, $alert-border-color-lightness);
+            border-color: 	color($tone, $alert-base-color-step + $border-step);
         }
 
         .icon {
-            fill:           color($tone, $alert-icon-color-lightness);
+            fill:           color($tone, $alert-base-color-step + $text-step);
         }
 
         & .close:hover .icon,
         & .close:active .icon,
         & .close:focus .icon {
-            fill:           color($tone, $alert-text-color-lightness);
+            fill:           color($tone, $alert-base-color-step + $text-hover-step);
         }
         
-    }
+    } 
     
 }
