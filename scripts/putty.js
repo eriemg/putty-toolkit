@@ -1,9 +1,9 @@
 window.addEventListener('load', function() {
-	puttyLayerLinks();
 	puttyModals();
 	puttyDrawers();
 	puttyScrollEase();
 	puttyTooltips();
+	puttyLayerLinks();
 	
 	window.addEventListener('resize', function() {
 		setTimeout(function(){ puttyTooltips(); }, 2000);
@@ -119,7 +119,15 @@ function puttyModals() {
 				modal.getElementsByClassName('overlay')[0].addEventListener('click', function(){ puttyClose(modal) });
 			}
 		}
-		
+
+		if ( modal.dataset.persist != 'true' ) {
+			var modalLinks = modal.querySelectorAll('a, [data-target]');
+			
+			Array.prototype.forEach.call(modalLinks, function(modalLink) {
+				modalLink.addEventListener('click', function(){ puttyClose(modal) });
+			});
+		}
+
 		if ( modal.dataset.close != 'false' ) {
 		
 			var closeIcon = document.createElement('button');
@@ -131,11 +139,6 @@ function puttyModals() {
 			modal.getElementsByClassName('close')[0].addEventListener('click', function(){ puttyClose(modal) });
 		}
 
-		var modalLinks = modal.querySelectorAll('a, [data-target]');
-		
-		Array.prototype.forEach.call(modalLinks, function(modalLink) {
-			modalLink.addEventListener('click', function(){ puttyClose(modal) });
-		});
 
 	});
 }
@@ -174,7 +177,7 @@ function puttyDrawers() {
 		}
 
 		var drawerLinks = drawer.querySelectorAll('a, [data-target]');
-		
+			
 		Array.prototype.forEach.call(drawerLinks, function(drawerLink) {
 			drawerLink.addEventListener('click', function(){ puttyClose(drawer) });
 		});
@@ -186,12 +189,11 @@ function puttyDrawers() {
 
 function puttyOpen(layer){
 	
+	layer.style.display = "flex";
+	setTimeout(function(){ layer.classList.add('show'); }, 100);
 	if (layer.classList.contains('tooltip') != true ) {
 		document.body.classList.add('lock');
 	}
-
-	layer.style.display = "flex";
-	setTimeout(function(){ layer.classList.add('show'); }, 100);
 }
 
 function puttyClose(layer){
