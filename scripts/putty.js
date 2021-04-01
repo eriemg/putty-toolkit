@@ -130,6 +130,13 @@ function puttyModals() {
 			
 			modal.getElementsByClassName('close')[0].addEventListener('click', function(){ puttyClose(modal) });
 		}
+
+		var modalLinks = modal.querySelectorAll('a, [data-target]');
+		
+		Array.prototype.forEach.call(modalLinks, function(modalLink) {
+			modalLink.addEventListener('click', function(){ puttyClose(modal) });
+		});
+
 	});
 }
 
@@ -166,7 +173,7 @@ function puttyDrawers() {
 			drawer.getElementsByClassName('close')[0].addEventListener('click', function(){ puttyClose(drawer) });
 		}
 
-		var drawerLinks = drawer.getElementsByTagName('a');
+		var drawerLinks = drawer.querySelectorAll('a, [data-target]');
 		
 		Array.prototype.forEach.call(drawerLinks, function(drawerLink) {
 			drawerLink.addEventListener('click', function(){ puttyClose(drawer) });
